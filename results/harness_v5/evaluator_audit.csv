@@ -1,0 +1,46 @@
+intervention_id,task_id,strategy,version,rescore,original_passed,original_assertions,original_final,original_official,original_strict,audited_passed,audited_assertions,audited_final,audited_official,audited_strict,notifications_added,notification_observed_explicitly,remaining_failed_requirements,trace
+263,df61dc5_3,A,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/formal/formal_263/A.json
+263,df61dc5_3,B,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/formal/formal_263/B.json
+263,df61dc5_3,C,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/formal/formal_263/C.json
+263,df61dc5_3,D,compatibility_audit_v1,done,1,3,False,False,,2,3,False,False,,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/formal/formal_263/D.json
+263,df61dc5_3,R,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/harness_v4/v4_formal/case_263/R.json
+263,df61dc5_3,C+,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/harness_v4/v4_formal/case_263/C+.json
+263,df61dc5_3,C++,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/harness_v4/v4_formal/case_263/C++.json
+263,df61dc5_3,C5,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/harness_v5/v5_formal/case_263/C5.json
+263,df61dc5_3,G5,compatibility_audit_v1,done,1,3,False,False,False,2,3,False,False,False,,,Likes are exactly the received-coworker-this-year transactions.,artifacts/raw/harness_v5/v5_formal/case_263/G5.json
+267,22cc237_1,A,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_267/A.json
+267,22cc237_1,B,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_267/B.json
+267,22cc237_1,C,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_267/C.json
+267,22cc237_1,D,compatibility_audit_v1,done,5,6,False,False,,6,6,True,True,,1,True,,artifacts/raw/expansion_v3/expansion_267/D.json
+267,22cc237_1,R,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_267/R.json
+267,22cc237_1,C+,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_267/C+.json
+267,22cc237_1,C++,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_267/C++.json
+267,22cc237_1,C5,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/harness_v5/v5_formal/case_267/C5.json
+267,22cc237_1,G5,compatibility_audit_v1,done,5,6,False,False,False,6,6,True,True,True,1,True,,artifacts/raw/harness_v5/v5_formal/case_267/G5.json
+272,3c13f5a_2,A,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_272/A.json
+272,3c13f5a_2,B,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_272/B.json
+272,3c13f5a_2,C,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/expansion_v3/expansion_272/C.json
+272,3c13f5a_2,D,compatibility_audit_v1,done,7,8,False,False,,8,8,True,True,,1,True,,artifacts/raw/expansion_v3/expansion_272/D.json
+272,3c13f5a_2,R,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_272/R.json
+272,3c13f5a_2,C+,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_272/C+.json
+272,3c13f5a_2,C++,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/harness_v4/v4_formal/case_272/C++.json
+272,3c13f5a_2,C5,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/harness_v5/v5_formal/case_272/C5.json
+272,3c13f5a_2,G5,compatibility_audit_v1,done,7,8,False,False,False,8,8,True,True,True,1,True,,artifacts/raw/harness_v5/v5_formal/case_272/G5.json
+737,f99d726_3,A,compatibility_audit_v1,done,4,13,False,False,False,6,11,False,False,False,,,assert the new order has 1 quantity of a single product. | assert the ordered product is of type public_data.apparel_type. | assert the ordered product has color private_data.best_available_color | assert the ordered product has relative_size data.private.desired_relative_size. | assert the ordered product has product_name data.private.product_name.,artifacts/raw/expansion_v3/expansion_737/A.json
+737,f99d726_3,B,compatibility_audit_v1,done,9,13,False,False,False,11,11,True,True,True,,,,artifacts/raw/expansion_v3/expansion_737/B.json
+737,f99d726_3,C,compatibility_audit_v1,done,9,13,False,False,False,11,11,True,True,True,,,,artifacts/raw/expansion_v3/expansion_737/C.json
+737,f99d726_3,D,compatibility_audit_v1,done,9,13,False,False,,11,11,True,True,,,,,artifacts/raw/expansion_v3/expansion_737/D.json
+737,f99d726_3,R,compatibility_audit_v1,done,9,13,False,False,False,11,11,True,True,True,,,,artifacts/raw/harness_v4/v4_formal/case_737/R.json
+737,f99d726_3,C+,compatibility_audit_v1,done,9,13,False,False,False,11,11,True,True,True,,,,artifacts/raw/harness_v4/v4_formal/case_737/C+.json
+737,f99d726_3,C++,compatibility_audit_v1,done,9,13,False,False,False,11,11,True,True,True,,,,artifacts/raw/harness_v4/v4_formal/case_737/C++.json
+737,f99d726_3,C5,compatibility_audit_v1,done,4,13,False,False,False,6,11,False,False,False,,,assert the new order has 1 quantity of a single product. | assert the ordered product is of type public_data.apparel_type. | assert the ordered product has color private_data.best_available_color | assert the ordered product has relative_size data.private.desired_relative_size. | assert the ordered product has product_name data.private.product_name.,artifacts/raw/harness_v5/v5_formal/case_737/C5.json
+737,f99d726_3,G5,compatibility_audit_v1,done,4,13,False,False,False,5,11,False,False,False,,,assert the new order has 1 quantity of a single product. | assert the ordered product is of type public_data.apparel_type. | assert the ordered product has color private_data.best_available_color | assert the ordered product has relative_size data.private.desired_relative_size. | assert the ordered product has product_name data.private.product_name. | Withdrawn return remains unchanged,artifacts/raw/harness_v5/v5_formal/case_737/G5.json
+763,9dabbc9_1,A,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/formal/formal_763/A.json
+763,9dabbc9_1,B,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/formal/formal_763/B.json
+763,9dabbc9_1,C,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/formal/formal_763/C.json
+763,9dabbc9_1,D,compatibility_audit_v1,done,4,4,True,True,,4,4,True,True,,,,,artifacts/raw/formal/formal_763/D.json
+763,9dabbc9_1,R,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/harness_v4/v4_formal/case_763/R.json
+763,9dabbc9_1,C+,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/harness_v4/v4_formal/case_763/C+.json
+763,9dabbc9_1,C++,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/harness_v4/v4_formal/case_763/C++.json
+763,9dabbc9_1,C5,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/harness_v5/v5_formal/case_763/C5.json
+763,9dabbc9_1,G5,compatibility_audit_v1,done,1,3,False,False,False,1,3,False,False,False,,,Only venmo changed. | New PR sent (correction).,artifacts/raw/harness_v5/v5_formal/case_763/G5.json

@@ -1,0 +1,23 @@
+{
+  "cases": 40,
+  "first_failed": 21,
+  "repaired": 2,
+  "legacy_fallback": 19,
+  "recovered_by_digits": 13,
+  "recovered_by_normalization": 15,
+  "legacy_full": 21,
+  "normalized_full": 36,
+  "c5_full": 25,
+  "c5_intent_valid": 40,
+  "c5_evidence_valid": 26,
+  "c5_edits_valid": 38,
+  "c5_partial": 15,
+  "historical_guard_no_rule": {
+    "unsupported_api": 16,
+    "state_fallback": 16,
+    "conditions_not_matched": 8
+  },
+  "scored_v4_rows": 280,
+  "historical_peak_settled_nano_usd": 1824583176,
+  "unsettled_nano_usd_at_diagnosis": 945561600
+}

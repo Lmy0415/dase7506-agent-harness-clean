@@ -1,0 +1,123 @@
+{
+  "actual_cumulative": {
+    "total_peak_nano_usd": 2829929070,
+    "outstanding_reservations_nano_usd": 945561600,
+    "settled_model_calls": 5591,
+    "scheduled_charge_estimate_nano_usd": 1414964535,
+    "known_offpeak_calls": 5591
+  },
+  "v5_true_use_by_phase": {
+    "v5_pilot": {
+      "shared": {
+        "calls": 11,
+        "input_tokens": 84658,
+        "output_tokens": 1256,
+        "peak_nano_usd": 4438296,
+        "scheduled_nano_usd": 2219148,
+        "known_offpeak_calls": 11
+      },
+      "G5": {
+        "calls": 28,
+        "input_tokens": 277234,
+        "output_tokens": 2666,
+        "peak_nano_usd": 27851934,
+        "scheduled_nano_usd": 13925967,
+        "known_offpeak_calls": 28
+      },
+      "C5": {
+        "calls": 32,
+        "input_tokens": 311236,
+        "output_tokens": 3178,
+        "peak_nano_usd": 30763920,
+        "scheduled_nano_usd": 15381960,
+        "known_offpeak_calls": 32
+      }
+    },
+    "v5_formal": {
+      "shared": {
+        "calls": 61,
+        "input_tokens": 727187,
+        "output_tokens": 9229,
+        "peak_nano_usd": 33205812,
+        "scheduled_nano_usd": 16602906,
+        "known_offpeak_calls": 61
+      },
+      "C5": {
+        "calls": 209,
+        "input_tokens": 3182467,
+        "output_tokens": 29430,
+        "peak_nano_usd": 198429348,
+        "scheduled_nano_usd": 99214674,
+        "known_offpeak_calls": 209
+      },
+      "G5": {
+        "calls": 200,
+        "input_tokens": 3124226,
+        "output_tokens": 29394,
+        "peak_nano_usd": 188741304,
+        "scheduled_nano_usd": 94370652,
+        "known_offpeak_calls": 200
+      }
+    },
+    "v5_new": {
+      "prefix": {
+        "calls": 651,
+        "input_tokens": 5095670,
+        "output_tokens": 84742,
+        "peak_nano_usd": 269806440,
+        "scheduled_nano_usd": 134903220,
+        "known_offpeak_calls": 651
+      },
+      "A": {
+        "calls": 41,
+        "input_tokens": 704662,
+        "output_tokens": 5471,
+        "peak_nano_usd": 17309976,
+        "scheduled_nano_usd": 8654988,
+        "known_offpeak_calls": 41
+      },
+      "C": {
+        "calls": 50,
+        "input_tokens": 788838,
+        "output_tokens": 5876,
+        "peak_nano_usd": 56408136,
+        "scheduled_nano_usd": 28204068,
+        "known_offpeak_calls": 50
+      },
+      "D": {
+        "calls": 139,
+        "input_tokens": 1474564,
+        "output_tokens": 17029,
+        "peak_nano_usd": 67630368,
+        "scheduled_nano_usd": 33815184,
+        "known_offpeak_calls": 139
+      }
+    },
+    "v5_new_formal": {
+      "shared": {
+        "calls": 12,
+        "input_tokens": 199364,
+        "output_tokens": 1817,
+        "peak_nano_usd": 9079008,
+        "scheduled_nano_usd": 4539504,
+        "known_offpeak_calls": 12
+      },
+      "G5": {
+        "calls": 41,
+        "input_tokens": 803761,
+        "output_tokens": 6820,
+        "peak_nano_usd": 44368428,
+        "scheduled_nano_usd": 22184214,
+        "known_offpeak_calls": 41
+      },
+      "C5": {
+        "calls": 54,
+        "input_tokens": 1408809,
+        "output_tokens": 9723,
+        "peak_nano_usd": 57312924,
+        "scheduled_nano_usd": 28656462,
+        "known_offpeak_calls": 54
+      }
+    }
+  }
+}

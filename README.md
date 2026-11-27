@@ -1,6 +1,6 @@
 # DASE7506 Final Project
 
-This project studies how an LLM agent revises an in-progress task when the user changes the goal. Six continuation strategies share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. The [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), and [progress log](PROGRESS.md) describe the two rounds of the study.
+This project studies how an LLM agent revises an in-progress task when the user changes the goal. The continuations share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. See the [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), [final V5 protocol](DASE7506_Harness_V5_Final_Experiment.md), and [progress log](PROGRESS.md).
 
 ## Local setup
 
@@ -78,10 +78,11 @@ The two freeze commands run once for this protocol. Screening and execution resu
 - [Compiled IEEE paper](paper/report.pdf)
 - [Overleaf ZIP](deliverables/overleaf_project.zip)
 - [Chinese walkthrough](docs/PROJECT_WALKTHROUGH_ZH.md) and [verification checklist](docs/FINAL_CHECKLIST.md)
-- [V4 branch metrics](results/harness_v4/branch_metrics.csv), [paired contrasts](results/harness_v4/paired.csv), [guard audit](results/harness_v4/guard_audit.csv), and [cumulative costs](results/harness_v4/budget.json)
+- [V5 branch metrics](results/harness_v5/branch_metrics.csv), [paired contrasts](results/harness_v5/paired.csv), [offline guard tests](results/harness_v5/guard_offline_metrics.csv), [evaluator sensitivity](results/harness_v5/sensitivity.csv), and [cumulative costs](results/harness_v5/budget.json)
+- [V4 branch metrics](results/harness_v4/branch_metrics.csv), [V4 paired contrasts](results/harness_v4/paired.csv), and [V4 guard audit](results/harness_v4/guard_audit.csv)
 - [Original 32-family results](results/branch_metrics.csv), [eight-family expansion](results/expansion_v3/branch_metrics.csv), and [V4 freeze](protocol/harness_v4_manifest.json)
 
-### Reproduce the V4 results
+### Reproduce results
 
 The V4 branches restore the 40 admitted checkpoints from the original and expansion batches. R consolidates the latest instruction. C+ separates current intent, visible execution receipts, and the edited plan. C++ adds a narrow pre-execution check. Source data and checkpoint contents stay local. The exported CSVs contain identifiers, outcomes, and cost fields. Use the following to resume the paid runs in a workspace with their original artifacts.
 
@@ -99,10 +100,30 @@ In the original workspace, rebuild V4 tables offline from raw traces and the cos
 .venv/bin/python -m scripts.check_intent_guard
 ```
 
-The checked-in tables are sufficient to regenerate the final PDF and Overleaf archive without a model call.
+### V5 verification and continuation
+
+C5 validates intent, evidence, and edits independently. G5 uses the same revision output as C5 and makes no review calls. A matched branch's logical budget includes the shared revision. The cash ledger counts that revision once. The historical 40-family comparison and the new-family confirmation appear as separate cohorts.
+
+In the original workspace with saved trajectories, run these commands for the offline work.
 
 ```bash
-.venv/bin/python -m scripts.render_v4
+.venv/bin/python -m scripts.v5_offline diagnose
+.venv/bin/python -m scripts.v5_offline guard-export
+.venv/bin/python -m scripts.v5_guard_detect artifacts/raw/harness_v5/guard_features.jsonl artifacts/raw/harness_v5/guard_predictions.jsonl
+.venv/bin/python -m scripts.v5_offline guard-metrics
+.venv/bin/python -m scripts.v5_guard_simulator_control
+.venv/bin/python -m scripts.v5_evaluator_audit
+.venv/bin/python -m scripts.v5_analyze
+```
+
+The historical integrity check uses the local V4 parent commit. In a clone with the API-created V4 commit instead, use `.venv/bin/python -c "from scripts import v5_offline as v; v.V4_ANCHOR = '479411b154c77166e90358d7369c016bf9a6c41e'; v.phase0()"` where the original raw checkpoints are available. Other diagnostic commands also require the local raw data. The feature file and label file contain private simulator data.
+
+The paid resume entry points for V5 are `.venv/bin/python -m src.harness_v5 formal` and `.venv/bin/python -m src.v5_sampling all`. They use the frozen manifests and skip already scored branches. Use the archived history and a new named batch to repeat a study with newly generated checkpoints.
+
+The checked-in V5 tables are sufficient to regenerate the final paper and Overleaf archive without a model call.
+
+```bash
+.venv/bin/python -m scripts.render_v5
 .venv/bin/python scripts/build_paper.py
 ```
 

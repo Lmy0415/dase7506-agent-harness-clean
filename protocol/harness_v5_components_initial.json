@@ -1,0 +1,19 @@
+{
+  "stage": "offline component freeze",
+  "method": "deterministic candidate-time rules; no guard API calls",
+  "gates": {
+    "pilot_control": "at least one isolated real conflict blocked and a real allowed operation with no observed false block",
+    "synthetic_control": "matched alternative remains unblocked; ambiguous control remains unblocked",
+    "live_pilot": "verify no simulator submission on block; monitor capability is independent of formal task gains"
+  },
+  "feature_source": "checkpoint visible history, user update, earlier visible responses, validated intent and candidate parameters only",
+  "isolation": "separate predictor process with feature-file-only interface; labels joined by a distinct process; no OS-level sandbox",
+  "source_sha256": {
+    "src/guard_v5.py": "fb50ea197b9008775737ad8850b482b1b7149b277ca61c85201fa069aee82765",
+    "src/intent_v5.py": "82b9c4f8af676529b70902138d4691d811a08241402b55e48e2c8c2e5e155bfc",
+    "scripts/v5_offline.py": "2728bffff7bb7525ab56978717da6bbd30bfe50f3605d89b6c510739afde0790",
+    "scripts/v5_guard_controls.py": "1b2473d1cc2aa53f264d47f8088435aacd15763c0d7a757370c861e77c18ebb7",
+    "scripts/v5_guard_detect.py": "865c7c64bee83e6c946e0ea07d34427c276ae5e081d354115bb96421b8cf88a9",
+    "tests/test_v5.py": "aa8e2971804e688a05bf3d901ac27fea71c139ffbd28f226e9f7be8d65593af3"
+  }
+}

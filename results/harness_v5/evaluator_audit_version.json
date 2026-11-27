@@ -1,0 +1,20 @@
+{
+  "version": "compatibility_audit_v1",
+  "original_scores_unchanged": true,
+  "audited_interventions": [
+    263,
+    267,
+    272,
+    737,
+    763
+  ],
+  "corrected_interventions": [
+    263,
+    267,
+    272,
+    737
+  ],
+  "semantic_ambiguity_unchanged": [
+    763
+  ]
+}

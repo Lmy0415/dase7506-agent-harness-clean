@@ -1,0 +1,23 @@
+{
+  "rows": 739,
+  "fields": [
+    "c5_intent",
+    "interruption_history",
+    "original",
+    "prior_history",
+    "record_id",
+    "request",
+    "tool",
+    "update",
+    "v4_intent"
+  ],
+  "separate_labels": true,
+  "candidate_result_in_predictor": false,
+  "history_bound": "interruption history and prior visible messages only; no candidate result",
+  "process_boundary": "separate pipeline processes and inputs, not OS-enforced access controls",
+  "sha256": {
+    "guard_features.jsonl": "8f78a1602d070b67de3e1f1e92c5e4b0f1bad8ba2db8116628acf2d8b9ffaad9",
+    "guard_labels.jsonl": "87c74d8d68e10c2bb9929a7c0fb320b79f5501ad9fb494089fb823aab8ea3e70",
+    "guard_predictions.jsonl": "eb328c343fd436c6279859a0ee4766e7ae2f6f9816e27dd20fefb4f90cc3a0ee"
+  }
+}

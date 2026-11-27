@@ -1,0 +1,248 @@
+{
+  "selection_sha256": "92e29f5277948367526d0ce027d5c1bf5867699b97f671f05fee0ce703ce5261",
+  "tasks": [
+    {
+      "intervention_id": 802,
+      "task_id": "ccf4b82_2",
+      "family_id": "ccf4b82",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 5,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_802",
+      "prefix_calls": 16,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "f8bbb54cdd4ad46e6419ffceefd7f1ce5d9198a1d21a616e3683da4acb5ec20e",
+      "state": {
+        "task_id": "ccf4b82_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "e677f2e6f691a0fae9fd334d523719a3ed9e68133c6c816e39eab30d8e08886e"
+      },
+      "v5_order": [
+        "C5",
+        "G5"
+      ]
+    },
+    {
+      "intervention_id": 842,
+      "task_id": "986aa4e_2",
+      "family_id": "986aa4e",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 66,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_842",
+      "prefix_calls": 19,
+      "order": [
+        "A",
+        "C",
+        "D"
+      ],
+      "context_sha256": "a4049c0ec227cb5d1dcdd091bcd71bf82d276125ae2444147f131f54d10ec53d",
+      "state": {
+        "task_id": "986aa4e_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "v5_order": [
+        "G5",
+        "C5"
+      ]
+    },
+    {
+      "intervention_id": 845,
+      "task_id": "adb1060_1",
+      "family_id": "adb1060",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 69,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_845",
+      "prefix_calls": 15,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "c3163bfcb6f63c2af8a00fa17ed93b3f632ed0b54e1318814da59ea1f1b157d0",
+      "state": {
+        "task_id": "adb1060_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "a3c29a4c8891935d801833f4a316bcf97cc3ff2517a2a973da5baca045993298"
+      },
+      "v5_order": [
+        "C5",
+        "G5"
+      ]
+    },
+    {
+      "intervention_id": 118,
+      "task_id": "29caf6f_2",
+      "family_id": "29caf6f",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 3,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_118",
+      "prefix_calls": 9,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "345ec8f6f8a02778883636c4007b3a3aa74d71537b4a2d62789ace837359f27c",
+      "state": {
+        "task_id": "29caf6f_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "v5_order": [
+        "G5",
+        "C5"
+      ]
+    },
+    {
+      "intervention_id": 321,
+      "task_id": "b3bdcc1_3",
+      "family_id": "b3bdcc1",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 15,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_321",
+      "prefix_calls": 18,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "d9ced15f35ae6e75513138e832deb8ec2c1f07161b3a767d42c4cda4bd6308db",
+      "state": {
+        "task_id": "b3bdcc1_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "6ec572fb851d855eb1cc5f1cca6a8200ec43053f9fe7f81da311fe879b268d7e"
+      },
+      "v5_order": [
+        "C5",
+        "G5"
+      ]
+    },
+    {
+      "intervention_id": 330,
+      "task_id": "23d431c_1",
+      "family_id": "23d431c",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 17,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_330",
+      "prefix_calls": 19,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "5fa83d051338bbd58fd184838a2fec60ae92a8fa15871e26377ac09c82b47232",
+      "state": {
+        "task_id": "23d431c_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "6ec572fb851d855eb1cc5f1cca6a8200ec43053f9fe7f81da311fe879b268d7e"
+      },
+      "v5_order": [
+        "G5",
+        "C5"
+      ]
+    },
+    {
+      "intervention_id": 324,
+      "task_id": "d37c235_1",
+      "family_id": "d37c235",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 21,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_324",
+      "prefix_calls": 20,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "b282182290dd18fea699af311385592032bed504618aa22abf945272ddac2e82",
+      "state": {
+        "task_id": "d37c235_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "v5_order": [
+        "C5",
+        "G5"
+      ]
+    },
+    {
+      "intervention_id": 312,
+      "task_id": "5e27cd7_3",
+      "family_id": "5e27cd7",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 29,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_312",
+      "prefix_calls": 10,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "3e2e19ef270659c526656c34126002a279f32b8c641f60e1edd6921a9515d839",
+      "state": {
+        "task_id": "5e27cd7_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "v5_order": [
+        "G5",
+        "C5"
+      ]
+    },
+    {
+      "intervention_id": 483,
+      "task_id": "ce73d68_2",
+      "family_id": "ce73d68",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 33,
+      "decision": "admitted",
+      "directory": "artifacts/raw/harness_v5/new_screen/v5_new_483",
+      "prefix_calls": 20,
+      "order": [
+        "C",
+        "A",
+        "D"
+      ],
+      "context_sha256": "405b31a1f976bb192c7d25983e12eae998b79a78fc5c7493b4859dcc739f2765",
+      "state": {
+        "task_id": "ce73d68_2",
+        "clock": "2023-05-19T16:55:16",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "v5_order": [
+        "C5",
+        "G5"
+      ]
+    }
+  ]
+}

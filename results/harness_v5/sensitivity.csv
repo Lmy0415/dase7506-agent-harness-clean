@@ -1,0 +1,10 @@
+arm,n,metric,original,audited_cases,revised,gains,losses
+A,40,strict,24,5,26,2,0
+B,40,strict,21,5,24,3,0
+C,40,strict,24,5,27,3,0
+R,40,strict,21,5,24,3,0
+C+,40,strict,22,5,25,3,0
+C++,40,strict,23,5,26,3,0
+D,40,final,24,5,27,3,0
+C5,40,strict,22,5,24,2,0
+G5,40,strict,21,5,23,2,0

@@ -1,32 +1,20 @@
 \section{Results}
 \input{generated/tables.tex}
-\subsection{Strict success and paired effects}
-All 280 expected branches were scored, including the standalone comparison.
-Table~\ref{tab:main} gives the fixed-denominator comparison. The intent-aware editor changed strict success by -5.0 points versus C and +2.5 points versus R.
-R changed strict success by -7.5 points versus native continuation.
-Guarded editing changed strict success by +2.5 points versus unguarded intent-aware editing.
-Table~\ref{tab:paired} shows discordant and concordant pairs and their uncertainty. Table~\ref{tab:strata} separates the two batches and intervention types.
+\subsection{Offline structure and guard tests}
+Among the 40 saved C+ responses and any repairs, the original parser admitted full state for 21 families. Representation normalization alone reached 36. After checking evidence and preserving independent modules, C5 retained 25 full and 15 partial states. These replay counts measure representation and evidence quality.
 
-\subsection{Violations, coverage, and cost}
-Table~\ref{tab:main} shows final passes with a committed withdrawn effect.
-The supervisor column covers stale answers or completion-related operations. Application violations alter simulator application state.
-The formal continuations recorded 0 branches with a monitored application violation.
-Case-specific predicates bound the scope of both counts. Retention has no separately labeled assertion in the formal cohorts.
+The guard replay used 689 natural successful requests. Of these, 385 had unknown labels. The 35 confirmed natural positives were supervisor answer submissions. Both policies missed them. No application-side violation was observed in these historical natural trajectories, so application recall cannot be estimated there. G5 caught 5/31 isolated application-positive boundary probes. The real pilot control yielded 1 correct block and 1 correct allow. The positive probes were selected by construction and contain no negative examples.
 
-C+ fell back to native continuation in 19/40 branches, and C++ fell back in 16/40.
-C+ flagged 31 evidence-related validation errors across all structured attempts.
-C++ inferred a signature in 0/40 branches.
-Of 168 evaluated requests it allowed 81, left 87 uncertain, and blocked 0.
-The independent audit confirmed 0 conflicts and 0 nonconflicts. It left 0 blocked requests unclassified.
-The audit uses the isolated probe for a blocked request only if it exactly matches the pending request and no intervening simulator call may have altered the state.
-When no requests can be independently adjudicated, a false-block rate is undefined.
+\subsection{Checkpoint-matched execution}
+Tables~\ref{tab:history} and \ref{tab:paired} report frozen primary outcomes. On the historical families, C5 yielded 30 full, 10 partial, and 0 fallback states. It downgraded evidence for 11 steps. The historical C5 versus C+ contrast has 1 gain and 1 loss. Tables separate swaps and partial drops. Retention has no independent formal denominator.
 
-Table~\ref{tab:cost} reports cost on all branches and on successful branches. Early stopping can reduce the cost of a failed run.
-Including setup, pilots, screening, and all formal branches, the ledger contains 4,062 returned requests.
-Their peak-price upper bound was \$1.8246.
-Unresolved reservations added \$0.9456, for \$2.7701 against the \$10 limit.
-Table~\ref{tab:d} reports D as a separate difficulty reference.
+G5 derived rules on 8/40 historical families and evaluated 186 tool requests. It blocked 0 and marked 78 unknown. The audit could independently verify 0 true conflicts and 0 false blocks. Case-level differences can arise from the later model generations.
 
-The guard did not intervene in the formal trajectories, so the observed difference from C+ cannot be attributed to blocking an operation.
+The prespecified unused-family queue yielded 9 qualified families from 35 prefix attempts. C5 achieved 3/9, compared with 4/9 for C and 4/9 for A (Table~\ref{tab:confirm}). The new sample is reported separately because admission is conditional and its small number of families limits precision. A zero-width interval records a sample with no discordant pairs.
 
-\IfFileExists{generated/case_analysis.tex}{\input{generated/case_analysis.tex}}{}
+\subsection{Cost and evaluator sensitivity}
+V5 returned 1,529 token receipts, with a peak-price estimate of \$1.0053. The cumulative project occupation including unresolved reservations was \$3.7755 of \$10. The logical cost columns charge each arm for shared planning, while the cash ledger counts each shared revision once. Short failed runs can lower average cost.
+
+Table~\ref{tab:audit} applies compatibility corrections uniformly to the audited families using saved terminal states. The original evaluator is the primary measure. Correcting a model-diff inconsistency or a withdrawn return assertion is a change in measurement. It does not alter the agents or their traces.
+
+\input{generated/case_analysis.tex}
