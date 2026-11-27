@@ -1,0 +1,213 @@
+{
+  "settings_sha256": "f7b347424beb59a14389240e20b17caa7438ac4d70a3d5151fd7a24e7447a9de",
+  "tasks": [
+    {
+      "family_id": "23cf851",
+      "intervention_id": 115,
+      "queue_position": 4,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "23cf851_2",
+      "type": "BothSwap",
+      "variant_order": 2,
+      "directory": "artifacts/raw/expansion_v3/expansion_115",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 10,
+      "context_sha256": "011d10c240e169d8d813e1f2b255b8b85c385cbaf65e6c1f93788cf08a0190d9",
+      "state": {
+        "task_id": "23cf851_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family_id": "f99d726",
+      "intervention_id": 737,
+      "queue_position": 13,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "f99d726_3",
+      "type": "VerbDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_737",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "e54a78b1d61db827dd78ea083e5b7f6f87e5d1a08fc639a7a25ba6cc82487a89",
+      "state": {
+        "task_id": "f99d726_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family_id": "92fe421",
+      "intervention_id": 841,
+      "queue_position": 19,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "92fe421_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_841",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "71b54ba0c92288dd20cf0456f93a830d21aada1c564dbc70f91701d7135b5d5f",
+      "state": {
+        "task_id": "92fe421_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family_id": "a676f2a",
+      "intervention_id": 844,
+      "queue_position": 35,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "a676f2a_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_844",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 20,
+      "context_sha256": "07ba90cbdb6e9f18ec179cbc2605650fd089a9be7ddfe6708493fbedf25f5ab8",
+      "state": {
+        "task_id": "a676f2a_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ]
+    },
+    {
+      "family_id": "e7a10f8",
+      "intervention_id": 9,
+      "queue_position": 38,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e7a10f8_2",
+      "type": "VerbSwap",
+      "variant_order": 3,
+      "directory": "artifacts/raw/expansion_v3/expansion_9",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 19,
+      "context_sha256": "37cb45ef178ca46d588ba4b7a35239b9676b2bacbbf6d30f971fa036c66dfeec",
+      "state": {
+        "task_id": "e7a10f8_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ]
+    },
+    {
+      "family_id": "3c13f5a",
+      "intervention_id": 272,
+      "queue_position": 41,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "3c13f5a_2",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_272",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 15,
+      "context_sha256": "bd1c7d7f6dfacb7ec82df4349244849964e89b650c9417e2450f5364f0198f03",
+      "state": {
+        "task_id": "3c13f5a_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ]
+    },
+    {
+      "family_id": "e52623a",
+      "intervention_id": 329,
+      "queue_position": 42,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e52623a_3",
+      "type": "BothSwap",
+      "variant_order": 3,
+      "directory": "artifacts/raw/expansion_v3/expansion_329",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "f8bf1427e977157447881339a5d5573ef532a71b568cd8332b165b6f411112e5",
+      "state": {
+        "task_id": "e52623a_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "family_id": "22cc237",
+      "intervention_id": 267,
+      "queue_position": 47,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "22cc237_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_267",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 19,
+      "context_sha256": "96bebb1913a88ec7e11a6dee0fbe9403932b9ac8d4b2d9c20b39101f673684bb",
+      "state": {
+        "task_id": "22cc237_1",
+        "clock": "2023-05-20T14:20:21",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ]
+    }
+  ]
+}

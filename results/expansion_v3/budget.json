@@ -1,0 +1,17 @@
+{
+  "cumulative": {
+    "total_peak_nano_usd": 1275281520,
+    "outstanding_reservations_nano_usd": 630374400,
+    "settled_model_calls": 3104,
+    "scheduled_charge_estimate_nano_usd": 637640760,
+    "known_offpeak_calls": 3104
+  },
+  "expansion_screening": {
+    "calls": 522,
+    "input_tokens": 3919066,
+    "output_tokens": 61435,
+    "peak_nano_usd": 204626952,
+    "scheduled_nano_usd": 102313476,
+    "known_offpeak_calls": 522
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "source_settings_sha256": "407431f91093d508eaf0fc880a765bf5177308b9fd9e7c0af796da30c6c30f58",
+  "source_manifest_sha256": "889e527b68783218d33e07b74f1a1c7bd38caced674ebcfce17c88c45e0ba5de",
+  "code_sha256": "740291dc5e0aae57d478676cb672e991de7e72ea40181ee5d62068ad6bb2cca1",
+  "rules_sha256": "4d865b33ed864394b9f191f41027fabc408d4dbf683a3cdf921df060d3400d40",
+  "model_id": "deepseek-flash",
+  "provider_version": "DeepSeek-V4.1-Flash-1017",
+  "max_prefix_calls": 20,
+  "max_suffix_calls_including_planning": 24,
+  "max_output_tokens_per_call": 512,
+  "scope": "One bounded reviewed pass in the unchanged formal queue. Use the first confirmed boundary per family, regardless of count.",
+  "d_selection": "all",
+  "candidates": [
+    {
+      "family_id": "23cf851",
+      "intervention_id": 115,
+      "queue_position": 4,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "23cf851_2",
+      "type": "BothSwap",
+      "variant_order": 2
+    },
+    {
+      "family_id": "23cf851",
+      "intervention_id": 114,
+      "queue_position": 4,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "23cf851_1",
+      "type": "BothSwap",
+      "variant_order": 4
+    },
+    {
+      "family_id": "23cf851",
+      "intervention_id": 12,
+      "queue_position": 4,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "23cf851_1",
+      "type": "VerbSwap",
+      "variant_order": 6
+    },
+    {
+      "family_id": "ccf4b82",
+      "intervention_id": 722,
+      "queue_position": 5,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "ccf4b82_2",
+      "type": "VerbDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "ccf4b82",
+      "intervention_id": 280,
+      "queue_position": 5,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "ccf4b82_1",
+      "type": "TargetDrop",
+      "variant_order": 4
+    },
+    {
+      "family_id": "33e202d",
+      "intervention_id": 784,
+      "queue_position": 7,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "33e202d_1",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "33e202d",
+      "intervention_id": 704,
+      "queue_position": 7,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "33e202d_1",
+      "type": "VerbDrop",
+      "variant_order": 3
+    },
+    {
+      "family_id": "33e202d",
+      "intervention_id": 785,
+      "queue_position": 7,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "33e202d_2",
+      "type": "TargetDrop",
+      "variant_order": 4
+    },
+    {
+      "family_id": "6b6ca61",
+      "intervention_id": 278,
+      "queue_position": 9,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "6b6ca61_1",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "f6f2e67",
+      "intervention_id": 849,
+      "queue_position": 11,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "f6f2e67_2",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "690d51b",
+      "intervention_id": 478,
+      "queue_position": 12,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "690d51b_1",
+      "type": "BothSwap",
+      "variant_order": 2
+    },
+    {
+      "family_id": "f99d726",
+      "intervention_id": 737,
+      "queue_position": 13,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "f99d726_3",
+      "type": "VerbDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "50e1ac9",
+      "intervention_id": 105,
+      "queue_position": 14,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "50e1ac9_1",
+      "type": "BothSwap",
+      "variant_order": 3
+    },
+    {
+      "family_id": "92fe421",
+      "intervention_id": 841,
+      "queue_position": 19,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "92fe421_1",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "3d9a636",
+      "intervention_id": 782,
+      "queue_position": 23,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "3d9a636_2",
+      "type": "VerbDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "a676f2a",
+      "intervention_id": 844,
+      "queue_position": 35,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "a676f2a_1",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "e7a10f8",
+      "intervention_id": 9,
+      "queue_position": 38,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e7a10f8_2",
+      "type": "VerbSwap",
+      "variant_order": 3
+    },
+    {
+      "family_id": "3c13f5a",
+      "intervention_id": 272,
+      "queue_position": 41,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "3c13f5a_2",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "3c13f5a",
+      "intervention_id": 271,
+      "queue_position": 41,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "3c13f5a_1",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "e52623a",
+      "intervention_id": 329,
+      "queue_position": 42,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e52623a_3",
+      "type": "BothSwap",
+      "variant_order": 3
+    },
+    {
+      "family_id": "e52623a",
+      "intervention_id": 149,
+      "queue_position": 42,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e52623a_1",
+      "type": "BothSwap",
+      "variant_order": 4
+    },
+    {
+      "family_id": "e52623a",
+      "intervention_id": 50,
+      "queue_position": 42,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e52623a_1",
+      "type": "BothSwap",
+      "variant_order": 6
+    },
+    {
+      "family_id": "22cc237",
+      "intervention_id": 267,
+      "queue_position": 47,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "22cc237_1",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "22cc237",
+      "intervention_id": 268,
+      "queue_position": 47,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "22cc237_3",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "ffea2b5",
+      "intervention_id": 757,
+      "queue_position": 49,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "ffea2b5_3",
+      "type": "VerbDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "b6d1f70",
+      "intervention_id": 287,
+      "queue_position": 55,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "b6d1f70_1",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "b6d1f70",
+      "intervention_id": 276,
+      "queue_position": 55,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "b6d1f70_3",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "36705ae",
+      "intervention_id": 758,
+      "queue_position": 57,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "36705ae_3",
+      "type": "VerbDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "59bcfc8",
+      "intervention_id": 519,
+      "queue_position": 58,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "59bcfc8_1",
+      "type": "BothSwap",
+      "variant_order": 2
+    },
+    {
+      "family_id": "6c2c621",
+      "intervention_id": 275,
+      "queue_position": 61,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "6c2c621_2",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "986aa4e",
+      "intervention_id": 442,
+      "queue_position": 66,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "986aa4e_2",
+      "type": "TargetSwap",
+      "variant_order": 1
+    },
+    {
+      "family_id": "b71318e",
+      "intervention_id": 279,
+      "queue_position": 71,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "b71318e_1",
+      "type": "TargetDrop",
+      "variant_order": 2
+    },
+    {
+      "family_id": "fddb6b6",
+      "intervention_id": 353,
+      "queue_position": 72,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "fddb6b6_3",
+      "type": "BothSwap",
+      "variant_order": 2
+    },
+    {
+      "family_id": "34d9492",
+      "intervention_id": 265,
+      "queue_position": 73,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "34d9492_2",
+      "type": "TargetDrop",
+      "variant_order": 1
+    },
+    {
+      "family_id": "a30375d",
+      "intervention_id": 474,
+      "queue_position": 74,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "a30375d_2",
+      "type": "BothSwap",
+      "variant_order": 3
+    }
+  ]
+}

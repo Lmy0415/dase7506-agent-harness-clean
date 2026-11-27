@@ -1,0 +1,1286 @@
+{
+  "settings_sha256": "e607a3ee2a55522728531db7d6a1bc31d38b9497cac410466e66c0161c8d4c51",
+  "exclusions": [],
+  "tasks": [
+    {
+      "family_id": "7bdaf23",
+      "intervention_id": 346,
+      "queue_position": 2,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "7bdaf23_3",
+      "type": "BothSwap",
+      "variant_order": 2,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_346",
+      "prefix_stop": "pending",
+      "prefix_calls": 10,
+      "context_sha256": "f999b4b138b7b63dc494aa3fdafb574e8f425acdb30a1f2dc38f2efb21d8a389",
+      "state": {
+        "task_id": "7bdaf23_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "96bf160",
+      "intervention_id": 507,
+      "queue_position": 6,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "96bf160_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_507",
+      "prefix_stop": "pending",
+      "prefix_calls": 10,
+      "context_sha256": "e2d2fab61cd3a4c308dc287a1afdca5dfab0f8cef0fa36d06c0164ebbbbc4ccf",
+      "state": {
+        "task_id": "96bf160_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "552869a",
+      "intervention_id": 309,
+      "queue_position": 8,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "552869a_1",
+      "type": "VerbSwap",
+      "variant_order": 2,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_309",
+      "prefix_stop": "pending",
+      "prefix_calls": 8,
+      "context_sha256": "36fb7b49d8bf8b01909c45bf58df7eb90c1af0b1c25cac5f259cd56bc5ef81d9",
+      "state": {
+        "task_id": "552869a_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "ffe6d5e",
+      "intervention_id": 516,
+      "queue_position": 10,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "ffe6d5e_3",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_516",
+      "prefix_stop": "pending",
+      "prefix_calls": 12,
+      "context_sha256": "d38df8dea27800ad6b9e146d729d43edb165cac15aa81454080403ebd71361be",
+      "state": {
+        "task_id": "ffe6d5e_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "1a79e37",
+      "intervention_id": 300,
+      "queue_position": 18,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "1a79e37_1",
+      "type": "VerbSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_300",
+      "prefix_stop": "pending",
+      "prefix_calls": 19,
+      "context_sha256": "3c37f249696d2fb3b20efb392a721af3429848ba3b18fcc92c6a3faf0a40d048",
+      "state": {
+        "task_id": "1a79e37_1",
+        "clock": "2023-05-18T14:24:02",
+        "model_hashes_sha256": "6ec572fb851d855eb1cc5f1cca6a8200ec43053f9fe7f81da311fe879b268d7e"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "76f2c72",
+      "intervention_id": 109,
+      "queue_position": 20,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "76f2c72_3",
+      "type": "BothSwap",
+      "variant_order": 3,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_109",
+      "prefix_stop": "pending",
+      "prefix_calls": 10,
+      "context_sha256": "2dfd87cb9fb05da879308cbfc9487ed394f8e6b5dced9e1934e5b735b96663e5",
+      "state": {
+        "task_id": "76f2c72_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "60d0b5b",
+      "intervention_id": 2,
+      "queue_position": 24,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "60d0b5b_3",
+      "type": "BothSwap",
+      "variant_order": 3,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_2",
+      "prefix_stop": "pending",
+      "prefix_calls": 17,
+      "context_sha256": "db96c681f38c6fea928b4ee8261d2d1dd392579e90d56d9677910a78bd978840",
+      "state": {
+        "task_id": "60d0b5b_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "df61dc5",
+      "intervention_id": 263,
+      "queue_position": 25,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "df61dc5_3",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_263",
+      "prefix_stop": "pending",
+      "prefix_calls": 18,
+      "context_sha256": "3416b200400a235867edd9e52cc66e5b7bc7828a9bf88059a0aa3142f30c909c",
+      "state": {
+        "task_id": "df61dc5_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "302c169",
+      "intervention_id": 247,
+      "queue_position": 27,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "302c169_3",
+      "type": "VerbDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_247",
+      "prefix_stop": "pending",
+      "prefix_calls": 6,
+      "context_sha256": "dfcae6fa21fa57badf15bd92eea9d8aa8b4b6c05c074713b6421c2c9ddfe929b",
+      "state": {
+        "task_id": "302c169_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "94be14680f6005f05895fa13d0f1a1db79c651e5465b47125beeb535d64927e2"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "e0fe09c",
+      "intervention_id": 488,
+      "queue_position": 28,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e0fe09c_2",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_488",
+      "prefix_stop": "pending",
+      "prefix_calls": 13,
+      "context_sha256": "6d093e9008c2119e215649f2ffbaaea99f8040c0238533ea533ef592afe028d5",
+      "state": {
+        "task_id": "e0fe09c_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "f099b4c",
+      "intervention_id": 351,
+      "queue_position": 30,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "f099b4c_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_351",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "d36ce7fb5ba1a8feacc1b802df91f3486a1cc43a4157228be3914acf23fe5982",
+      "state": {
+        "task_id": "f099b4c_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "906f2c7",
+      "intervention_id": 31,
+      "queue_position": 32,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "906f2c7_1",
+      "type": "VerbSwap",
+      "variant_order": 2,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_31",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "5b4cf12ba9621102ff8f4fc6e19d48ae106d30059dc63a7e7b31b79dfbc86e91",
+      "state": {
+        "task_id": "906f2c7_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "4d12842",
+      "intervention_id": 468,
+      "queue_position": 34,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "4d12842_2",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_468",
+      "prefix_stop": "pending",
+      "prefix_calls": 15,
+      "context_sha256": "0d9fbac6b0cf91b3288e50c003069be418e6eccd385281cf337dd8a0c47548ce",
+      "state": {
+        "task_id": "4d12842_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "365e0a3",
+      "intervention_id": 307,
+      "queue_position": 36,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "365e0a3_3",
+      "type": "BothSwap",
+      "variant_order": 3,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_307",
+      "prefix_stop": "pending",
+      "prefix_calls": 7,
+      "context_sha256": "4d01ea59c856b435e01f08c86b20586a853dbfe7992987ebab418bfd4c6a578c",
+      "state": {
+        "task_id": "365e0a3_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "383cbac",
+      "intervention_id": 0,
+      "queue_position": 44,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "383cbac_1",
+      "type": "VerbSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_0",
+      "prefix_stop": "pending",
+      "prefix_calls": 6,
+      "context_sha256": "53485f815a43ae9c2b3e760e2853f1e9854c9287e4669188f9f2905c5c655646",
+      "state": {
+        "task_id": "383cbac_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "ff58e36",
+      "intervention_id": 354,
+      "queue_position": 46,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "ff58e36_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_354",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "07f31be361cf1db5e338701b22677e7b51fe970514388d8e888fd078f2fcdb00",
+      "state": {
+        "task_id": "ff58e36_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "eb5ad85",
+      "intervention_id": 316,
+      "queue_position": 48,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "eb5ad85_2",
+      "type": "VerbSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_316",
+      "prefix_stop": "pending",
+      "prefix_calls": 7,
+      "context_sha256": "dfa0140d19cd70428aa5f985ff744989627010d615194df89b07262b375da93f",
+      "state": {
+        "task_id": "eb5ad85_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "166f4ff",
+      "intervention_id": 450,
+      "queue_position": 50,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "166f4ff_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_450",
+      "prefix_stop": "pending",
+      "prefix_calls": 5,
+      "context_sha256": "1e413cbb5d40019f7b807a33bb4d6398bcdcba758a01729a453213a22cc30be1",
+      "state": {
+        "task_id": "166f4ff_1",
+        "clock": "2023-06-03T23:58:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "530b157",
+      "intervention_id": 244,
+      "queue_position": 51,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "530b157_2",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_244",
+      "prefix_stop": "pending",
+      "prefix_calls": 11,
+      "context_sha256": "18828289be65e218867fabeb22194f1984c45ad657b8af4b2157cd843d34ce09",
+      "state": {
+        "task_id": "530b157_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "b81349cb762774642f3cc420a47039f27d5e48eb3a25e4f53f9f48c42cc5860b"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "321ec38",
+      "intervention_id": 132,
+      "queue_position": 52,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "321ec38_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_132",
+      "prefix_stop": "pending",
+      "prefix_calls": 7,
+      "context_sha256": "2c3474f37ad58049b05120f95d4bbcc5338efce3dd16a64777fe6c2f16f3d0b7",
+      "state": {
+        "task_id": "321ec38_1",
+        "clock": "2023-05-21T13:50:34",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "6bdbc26",
+      "intervention_id": 104,
+      "queue_position": 54,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "6bdbc26_3",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_104",
+      "prefix_stop": "pending",
+      "prefix_calls": 7,
+      "context_sha256": "d9462c341efccbf9a2fb091e12b45e91760266000c8dbe41f33a3ac1d4a2d5c7",
+      "state": {
+        "task_id": "6bdbc26_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "024c982",
+      "intervention_id": 338,
+      "queue_position": 56,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "024c982_3",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_338",
+      "prefix_stop": "pending",
+      "prefix_calls": 5,
+      "context_sha256": "83bbb6996f948379f39c1419217651d9341dc2651fe010f332e29eed77a758ec",
+      "state": {
+        "task_id": "024c982_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "522e5e5",
+      "intervention_id": 453,
+      "queue_position": 60,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "522e5e5_3",
+      "type": "BothSwap",
+      "variant_order": 2,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_453",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "6b20bc883152d5d793b1c503a4cb6a2c9f7d596f4b9035a6718915d9756387c2",
+      "state": {
+        "task_id": "522e5e5_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "652485c",
+      "intervention_id": 39,
+      "queue_position": 62,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "652485c_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_39",
+      "prefix_stop": "pending",
+      "prefix_calls": 13,
+      "context_sha256": "1d4fe75feecac857e80dd613f9dc7abf931ca0d9b2938a9ca8dabd4a7f85bb3a",
+      "state": {
+        "task_id": "652485c_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "29a7b7e",
+      "intervention_id": 772,
+      "queue_position": 63,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "29a7b7e_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_772",
+      "prefix_stop": "pending",
+      "prefix_calls": 20,
+      "context_sha256": "cc8a98d998b6357180f84a21e72470fdb51899d82014ff8168dd46d85ae1b64b",
+      "state": {
+        "task_id": "29a7b7e_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "cef22bdf6403c94f8c57744c3488318406bd329581ca5611e5c8ffcda929c22f"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "dbc0276",
+      "intervention_id": 503,
+      "queue_position": 64,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "dbc0276_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_503",
+      "prefix_stop": "pending",
+      "prefix_calls": 8,
+      "context_sha256": "7545328b18a9edc5d9c97da7835231838f13aea678fd4f9494e7cb3669791353",
+      "state": {
+        "task_id": "dbc0276_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "9dabbc9",
+      "intervention_id": 763,
+      "queue_position": 67,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "9dabbc9_1",
+      "type": "VerbDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_763",
+      "prefix_stop": "pending",
+      "prefix_calls": 8,
+      "context_sha256": "94abbd5c2bd46789017a615fa488c58001003f92d0c4e57c628a8590907f9a9a",
+      "state": {
+        "task_id": "9dabbc9_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "2ff4dfb",
+      "intervention_id": 32,
+      "queue_position": 68,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "2ff4dfb_1",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_32",
+      "prefix_stop": "pending",
+      "prefix_calls": 9,
+      "context_sha256": "6e7526997759058ccccaf2c6899c3c5c30b7cd978636188866bf9e643f5c9d66",
+      "state": {
+        "task_id": "2ff4dfb_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "270f1ff",
+      "intervention_id": 134,
+      "queue_position": 70,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "270f1ff_1",
+      "type": "BothSwap",
+      "variant_order": 2,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_134",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "5d999f8364cfa6b59938ad392eaa0c8b28153f147acb214fbbe2fd18a9ad3220",
+      "state": {
+        "task_id": "270f1ff_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "9bf2c8a",
+      "intervention_id": 313,
+      "queue_position": 76,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "9bf2c8a_2",
+      "type": "BothSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_313",
+      "prefix_stop": "pending",
+      "prefix_calls": 5,
+      "context_sha256": "29f38745a9005787507865df4f89d0185490cfe9cee4a338c75e4f99554de272",
+      "state": {
+        "task_id": "9bf2c8a_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "d6ac34d",
+      "intervention_id": 143,
+      "queue_position": 78,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "d6ac34d_1",
+      "type": "TargetSwap",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_143",
+      "prefix_stop": "pending",
+      "prefix_calls": 8,
+      "context_sha256": "9156071d3dc2e9e9eb0989d1254b5714016f95fec3bc101e1f27f71d5e5158f5",
+      "state": {
+        "task_id": "d6ac34d_1",
+        "clock": "2023-05-18T21:09:28",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "2d9f728",
+      "intervention_id": 783,
+      "queue_position": 81,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "2d9f728_2",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "status": "admitted",
+      "directory": "artifacts/raw/formal/formal_783",
+      "prefix_stop": "pending",
+      "prefix_calls": 12,
+      "context_sha256": "f4e8d8a3a9d2423e32876ce259dc45c02b44c77739e298973e114a7e68e05f26",
+      "state": {
+        "task_id": "2d9f728_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "original",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "23cf851",
+      "intervention_id": 115,
+      "queue_position": 4,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "23cf851_2",
+      "type": "BothSwap",
+      "variant_order": 2,
+      "directory": "artifacts/raw/expansion_v3/expansion_115",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 10,
+      "context_sha256": "011d10c240e169d8d813e1f2b255b8b85c385cbaf65e6c1f93788cf08a0190d9",
+      "state": {
+        "task_id": "23cf851_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "f99d726",
+      "intervention_id": 737,
+      "queue_position": 13,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "f99d726_3",
+      "type": "VerbDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_737",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "e54a78b1d61db827dd78ea083e5b7f6f87e5d1a08fc639a7a25ba6cc82487a89",
+      "state": {
+        "task_id": "f99d726_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "92fe421",
+      "intervention_id": 841,
+      "queue_position": 19,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "92fe421_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_841",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "71b54ba0c92288dd20cf0456f93a830d21aada1c564dbc70f91701d7135b5d5f",
+      "state": {
+        "task_id": "92fe421_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "a676f2a",
+      "intervention_id": 844,
+      "queue_position": 35,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "a676f2a_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_844",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 20,
+      "context_sha256": "07ba90cbdb6e9f18ec179cbc2605650fd089a9be7ddfe6708493fbedf25f5ab8",
+      "state": {
+        "task_id": "a676f2a_1",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "e7a10f8",
+      "intervention_id": 9,
+      "queue_position": 38,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e7a10f8_2",
+      "type": "VerbSwap",
+      "variant_order": 3,
+      "directory": "artifacts/raw/expansion_v3/expansion_9",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 19,
+      "context_sha256": "37cb45ef178ca46d588ba4b7a35239b9676b2bacbbf6d30f971fa036c66dfeec",
+      "state": {
+        "task_id": "e7a10f8_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    },
+    {
+      "family_id": "3c13f5a",
+      "intervention_id": 272,
+      "queue_position": 41,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "3c13f5a_2",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_272",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 15,
+      "context_sha256": "bd1c7d7f6dfacb7ec82df4349244849964e89b650c9417e2450f5364f0198f03",
+      "state": {
+        "task_id": "3c13f5a_2",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "C+",
+        "C++",
+        "R"
+      ]
+    },
+    {
+      "family_id": "e52623a",
+      "intervention_id": 329,
+      "queue_position": 42,
+      "split": "formal",
+      "stratum": "Swap",
+      "task_id": "e52623a_3",
+      "type": "BothSwap",
+      "variant_order": 3,
+      "directory": "artifacts/raw/expansion_v3/expansion_329",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 14,
+      "context_sha256": "f8bf1427e977157447881339a5d5573ef532a71b568cd8332b165b6f411112e5",
+      "state": {
+        "task_id": "e52623a_3",
+        "clock": "2023-05-18T12:00:00",
+        "model_hashes_sha256": "da18dfd18cde04c10a5b4ee42cd11cb4c08b97e272289442cba8c7e8db4710f5"
+      },
+      "order": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "C++",
+        "R",
+        "C+"
+      ]
+    },
+    {
+      "family_id": "22cc237",
+      "intervention_id": 267,
+      "queue_position": 47,
+      "split": "formal",
+      "stratum": "Drop",
+      "task_id": "22cc237_1",
+      "type": "TargetDrop",
+      "variant_order": 1,
+      "directory": "artifacts/raw/expansion_v3/expansion_267",
+      "status": "admitted",
+      "prefix_stop": "pending",
+      "prefix_calls": 19,
+      "context_sha256": "96bebb1913a88ec7e11a6dee0fbe9403932b9ac8d4b2d9c20b39101f673684bb",
+      "state": {
+        "task_id": "22cc237_1",
+        "clock": "2023-05-20T14:20:21",
+        "model_hashes_sha256": "5a320a434c17d2213e513627da21740c5e0d3719ead0e8d4e21238b46d0aa10a"
+      },
+      "order": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "cohort": "expansion",
+      "v4_order": [
+        "R",
+        "C+",
+        "C++"
+      ]
+    }
+  ]
+}
