@@ -1,0 +1,48 @@
+{
+  "project": {
+    "total_peak_nano_usd": 3202666218,
+    "outstanding_reservations_nano_usd": 945561600,
+    "settled_model_calls": 6184,
+    "scheduled_charge_estimate_nano_usd": 1601333109,
+    "known_offpeak_calls": 6184
+  },
+  "project_occupied_upper_nano_usd": 4148227818,
+  "pact_occupied_upper_nano_usd": 372737148,
+  "pact_pending_nano_usd": 0,
+  "pact_limit_nano_usd": 2000000000,
+  "pact_by_stage": {
+    "pilot": {
+      "PRE/A": 6253644,
+      "peak_nano_usd": 57610548,
+      "receipts": 94,
+      "estimated_schedule_nano_usd": 28805274,
+      "PRE/P": 7267248,
+      "PRE/PACT": 19194360,
+      "POST/P": 4758012,
+      "POST/PACT": 15057384,
+      "POST/A": 5079900
+    },
+    "pilot2": {
+      "PRE/A": 9626496,
+      "peak_nano_usd": 36293628,
+      "receipts": 87,
+      "estimated_schedule_nano_usd": 18146814,
+      "PRE/P": 3783468,
+      "PRE/PACT": 7022532,
+      "POST/P": 4596912,
+      "POST/PACT": 7025100,
+      "POST/A": 4239120
+    },
+    "formal": {
+      "PRE/A": 34105356,
+      "peak_nano_usd": 278832972,
+      "receipts": 412,
+      "estimated_schedule_nano_usd": 139416486,
+      "PRE/P": 44151300,
+      "PRE/PACT": 111191316,
+      "POST/P": 28374060,
+      "POST/PACT": 36486528,
+      "POST/A": 24524412
+    }
+  }
+}

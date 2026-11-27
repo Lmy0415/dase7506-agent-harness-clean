@@ -42,3 +42,15 @@
 | 分批分析和评分审计 | 通过 | [正式逐题](../results/harness_v5/branch_metrics.csv)、[配对区间](../results/harness_v5/paired.csv)、[独立评分审计](V5_EVALUATOR_AUDIT_ZH.md)。新族另报告。45 条终态做了独立复评，原分保持冻结。第 845 题的 5 条导入错误从原终态恢复，断言没变。 |
 | 论文、中文说明和复算入口 | 通过 | [LaTeX](../paper/main.tex)、[6 页 PDF](../paper/report.pdf)、[Overleaf ZIP](../deliverables/overleaf_project.zip)、[中文说明](PROJECT_WALKTHROUGH_ZH.md)、[复算命令](../README.md)。ZIP 的 8 个成员实际解包编译并逐页核对。 |
 | 费用、作者和远端 | 通过 | [费用账本汇总](../results/harness_v5/budget.json) 记录 5,591 个回执；含未结预留上界 3.775490670 USD，低于 10 USD。作者姓名、学号和单位保留待填。交付到现有 Private 仓库，保持其可见性。 |
+
+## PACT 独立补充
+
+| 验收项 | 证据 |
+| --- | --- |
+| 历史结果封存 | V3–V5 原有 405 条正式记录及配置保持原样。V5 论文和交付附件保留在历史提交。 |
+| 真实提交边界及选样 | [题单](../protocol/pact_manifest.json) 固定 12 个历史家族和 2 个独立 pilot。14 个 POST 实际执行恰好一次，有 2xx 与真实状态变化，期间零模型调用。[边界核验](../results/pact/boundary_checks.csv)。 |
+| 真实门禁与同样资源 | [组件控制](../results/pact/component_control.json) 在两边验证拒绝未提交，足够的独立请求能实际写入。[冻结设置](../protocol/pact_settings.json) 记录同一指纹、24 次调用、512 token 和两个费用封顶。 |
+| 有限 pilot 与原分保留 | [首轮](../results/pact/pilot_first.csv) 12/12，唯一确认轮 12/12。[正式分支](../results/pact/branch_metrics.csv) 72/72。两轮及全部正式都统一记账。 |
+| 独立评分与分层结果 | [分母和指标](../results/pact/summary.csv)、[配对结果](../results/pact/paired.csv)、[通信复核](../results/pact/blind_review.csv)、[引用敏感性](../results/pact/reference_sensitivity.csv)。主分按预冻结评分，独立审计单列。 |
+| 论文与作者信息 | [LaTeX](../paper/main.tex)、[PDF](../paper/report.pdf)、[Overleaf 工程](../deliverables/overleaf_project.zip)、[中文研究说明](PACT_WALKTHROUGH_ZH.md)。作者姓名、学号及单位保留占位。 |
+| 费用与交付 | [费用账本](../results/pact/budget.json) 核对 PACT 占用上界 0.372737148 USD 与项目 4.148227818 USD。通过只读仓库元数据和文件树核对 Private `main`。 |

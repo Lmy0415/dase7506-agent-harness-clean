@@ -3,140 +3,106 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{url}
-\IfFileExists{generated/numbers.tex}{\input{generated/numbers.tex}}{}
 
-\title{Robust Intent State for Mid-Task Goal Revision in LLM Agents}
+\title{Beyond Replanning: Commit-Aware Task Triage for LLM Agents under Mid-Task Goal Changes}
 \author{\IEEEauthorblockN{[Author names to be supplied]}
 \IEEEauthorblockA{DASE7506 Final Project\\{[Student IDs and affiliation to be supplied]}}}
 
 \begin{document}
 \maketitle
-
 \begin{abstract}
-\IfFileExists{generated/abstract.tex}{\input{generated/abstract.tex}}{%
-When a user changes an instruction during execution, an agent must act on the revised goal while keeping useful work already done. We study this problem for stateful tool use in AppWorld with interventions from InterventionBench. We compare native continuation, full replanning, and local revision of a numbered plan using a shared environment and matched history. A fourth condition receives the revised instruction from the initial state. The evaluation records whether withdrawn effects commit after the intervention and verifies the revised final state. This working draft documents the protocol while formal screening is in progress.}
+\input{generated/abstract.tex}
 \end{abstract}
 \begin{IEEEkeywords}
-LLM agents, plan revision, goal changes, stateful tool use
+LLM agents, goal revision, stateful tool use, human escalation
 \end{IEEEkeywords}
 
 \section{Introduction}
-Consider an assistant preparing to send a shared artifact to two people. It has generated the artifact, and the next call would send it to the first recipient. The user now asks to send it only to the second recipient. A good continuation preserves the artifact and updates the delivery target. If the assistant sends it to both people, the intended recipient can still receive it. That final success offers incomplete evidence about whether the assistant followed the update.
+A user asks an assistant to pay a grocery bill and text the recipient when it is done. After the payment, the user withdraws the text request. If the text is still pending, the assistant can withhold it and preserve the payment. If the text has already gone out, withholding it is impossible. The assistant can disclose the send and ask whether a follow-up is authorized. Both situations have the same revised instruction. They differ in which actions remain possible and appropriate.
 
-InterventionBench~\cite{lee2026intervention} provides user messages that modify in-progress AppWorld and WebArena tasks. Two questions arise when the change interrupts real tool execution. First, how much can the agent gain by rewriting the current instruction without updating its plan? Second, does explicitly recording the current instruction and execution evidence improve a local plan edit? A plan alone does not tell the executor which requirements still apply or which effects already occurred.
+Task and plan representations help an agent reason about revisions, but the correct response can depend on an external effect that has already occurred. Our first study compares continuation methods on checkpoint-matched InterventionBench tasks in AppWorld~\cite{lee2026intervention,trivedi2024appworld}. Making an intent-aware representation more tolerant reduces complete fallback, yet does not improve strict task success in the historical cohort. A deterministic guard can block a known withdrawn send in a control, while opportunities to intervene in task execution remain limited. These results motivate examining the disposition of a particular committed action and the scope of work that can safely resume.
 
-We compare native continuation, replanning, local editing, instruction consolidation, and editing with explicit intent and execution state. The initial experiments exposed frequent format-driven fallback and a guard that never formed a rule in the formal cohort. We use saved responses to separate representation failures from evidence failures, then evaluate a more tolerant editor and a deterministic guard. Checkpoint-matched branches share one model-produced history and one simulator state immediately before a confirmed withdrawn write. A standalone revised task provides difficulty context, and a separate scoring audit tests the sensitivity of the conclusions to simulator compatibility.
+We introduce a paired evaluation around one real simulator submission. For each family, the agent sees the same user revision and a different verified receipt depending on whether the request has committed. We compare native continuation, a full procedural prompt, and a controller called PACT, short for Pause, Assess, Classify, and Triage. PACT turns an assessment into a program-controlled queue and checks the scope of writes before submission. The evaluation measures disposition, reporting, authorization, and independent progress. This design lets us compare procedural instructions with an executable implementation under the same model and tool budget.
 
 \section{Related Work}
-\subsection{Planning after feedback}
-AdaPlanner uses environmental feedback to adapt self-generated plans, including refinements within or outside the current plan~\cite{sun2023adaplanner}. Our setting supplies a new user instruction at a controlled point and compares two update interfaces for the same language model. The full and local interfaces both use a separate planning call. Their immediate execution instructions have the same structure.
+\textbf{Revisions during execution.}
+InterventionBench varies the operation and goal component modified by a user intervention, with AppWorld and WebArena as environments~\cite{lee2026intervention}. InterruptBench studies interruption handling in web navigation~\cite{zou2026interrupt}. DynaRev schedules revisions at semantic milestones and analyzes instruction rewriting with retained browser state~\cite{zhang2026dynarev}. Our pairing fixes a concrete simulator request and places the same revised message on either side of its submission. The comparison targets the consequences of commitment while holding the revised instruction and prior trajectory fixed.
 
-\subsection{Interruption and stateful evaluation}
-InterventionBench pairs original and modified tasks and studies whether agents adapt to interventions~\cite{lee2026intervention}. InterruptBench evaluates interruptible agents in stateful web navigation under additions, revisions, and retractions~\cite{zou2026interrupt}. We take AppWorld tasks and scoring programs from the former benchmark and condition inclusion on a common pre-write boundary. This isolates the choice of continuation mechanism within each admitted task family.
+\textbf{Plan and state representations.}
+AdaPlanner adapts self-generated plans to execution feedback~\cite{sun2023adaplanner}. IntentFlux studies superseded requirements and uses explicit active state~\cite{zhang2026intentflux}. Zhang et al. compare task-state display, direction, and enforcement, with enforceability depending on mapping requests to state~\cite{zhang2026taskstate}. GuardAgent translates natural-language safety constraints into executable checks~\cite{xiang2025guardagent}. ToolSandbox evaluates stateful trajectories with milestones~\cite{lu2025toolsandbox}. We compare explicit planning representations and a program-controlled authorization queue in a single application simulator. PACT's enforcement depends on validated task interpretation and a documented request mapping.
 
-DynaRev studies how web agents handle revisions delivered at task milestones and reports gains from rewriting instructions while preserving browser state~\cite{zhang2026dynarev}. This motivates consolidating the user's instruction while retaining the same checkpoint and conversation. Our comparison uses AppWorld tasks and a pending tool call as the interruption boundary.
+\textbf{Reconsideration and escalation.}
+Intention reconsideration has long been studied in belief--desire--intention agents~\cite{schut2004intention}. Revision Absorber relates adaptation cost to reversibility and rolls back a conflicting suffix when the available operations allow it~\cite{zhai2026revisable}. Our controller treats authorization as a separate condition for applying an inverse. AgentAbstain pairs tasks where acting or withholding is appropriate~\cite{liu2026abstain}. ImpasseBench evaluates whether coding agents escalate when observable evidence indicates a blocker~\cite{chen2026impasse}. Here a single session can contain both an action awaiting a user decision and independent actions that remain permitted.
 
-AppWorld supplies simulated applications and programmatic checks over world states~\cite{trivedi2024appworld}. ToolSandbox uses stateful interaction and evaluation milestones for tool use~\cite{lu2025toolsandbox}. We compare final-state evaluation with a trace-level record of withdrawn effects. The two measurements answer different questions when an effect can be reversed before the final state.
+\section{Study I: Acting on a Revised Goal}
+\subsection{Shared checkpoints and continuation methods}
+We use AppWorld \texttt{0.1.3.post1}, data version \texttt{0.1.0}, and InterventionBench v1.1 at \texttt{7fe53126}. The candidate scope is swaps and partial drops. A model produces a numbered plan and executes a prefix of up to 20 calls. An environment-side predicate recognizes a proposed withdrawn effect and withholds the request. An isolated replay must confirm both an accepted request and the corresponding database change. This condition excludes cases where the apparent write would fail or have no monitored effect. Each continuation starts from an independent, verified copy of the corresponding checkpoint and receives the benchmark's actual revision.
 
-\subsection{Intent state and execution checks}
-IntentFlux measures the effect of superseded user requirements, and StateForge maintains an explicit set of active requirements~\cite{zhang2026intentflux}. Our question concerns a revision that arrives after tool execution has begun. The agent must account for prior effects as it interprets the current instruction and edits its remaining plan.
+The historical comparisons use native continuation (A), a new remaining plan (B), a sparse edit to the old plan (C), consolidation of the user instructions (R), an explicit intent and evidence representation with local edits (C+), and C+ with a narrow pre-execution guard (C++). C5 normalizes step-number representations, combines consistent receipt references, and validates intent, evidence, and edits separately. Unverifiable evidence leaves the corresponding step unresolved. G5 shares the exact initial C5 state and uses a deterministic rule when the visible update and receipt identify a withdrawn operation. A separate standalone condition (D) starts from the original simulator state with the revised goal and provides a difficulty reference.
 
-Zhang et al. compare displaying, directing, and enforcing task state, showing that enforcement depends on how reliably requests map to tracked states~\cite{zhang2026taskstate}. GuardAgent uses language-model reasoning to turn safety requests into executable checks~\cite{xiang2025guardagent}. In our setting, the user update and visible receipts define the evidence available for inferring a conflict. The benchmark's state predicates serve as independent evaluation.
+The original screen attempted 72 variants and admitted 32 families. The same-protocol expansion screened 29 of 35 queued variants and admitted eight more families. Together the 40 families contain 29 swaps and 11 partial drops. An unused-family confirmation screened 35 variants and admitted nine more families. The studies contain 405 historical scored branches. V5 comparisons on the 40 previously examined families are exploratory. The independently selected nine-family confirmation is reported separately.
 
-\section{Methods}
-\subsection{Task representation and boundary}
-A case contains an original instruction, a user intervention, and a standalone revised instruction. We retain swaps and partial drops. A swap replaces a target or action. A partial drop withdraws part of the original task while leaving a task to complete. We exclude complete cancellations. A unit is a base task family, because variants from the same family can share a task template and differ in a few values.
+\subsection{Scoring and analysis}
+Revised-final success checks the final world against the updated goal. Strict success additionally requires all independently applicable retained checks and no observed post-revision withdrawn effect. Monitoring covers case-specific operations, including \texttt{supervisor} answer submissions. We record application effects separately. The official pass is available separately and can also depend on failure of the original goal. No independent retained checks are applicable in the historical formal sample. We report D's revised-final success because it starts without interruption history.
 
-The model first creates a short numbered plan and follows it with AppWorld tool calls. At each proposed call, an environment-side monitor checks whether the request matches a case-specific withdrawn operation. A matching call is marked pending and withheld from the shared world. A separate probe restores the same saved state, attempts this call, and checks the related database records. Admission requires both an accepted request and an observed withdrawn state transition. This check rules out failed requests and idempotent writes that appear pertinent based on their arguments alone. The probe's world is discarded after observation.
+All continuations use DeepSeek Flash in non-thinking mode with a 24-call limit that includes planning and repair and 512 generated tokens per call~\cite{deepseekpricing}. D has a 44-call allowance for its full trajectory. The model sees public API documentation and bounded responses. Private case annotations and evaluator outputs stay outside the agent input. We resample families 10,000 times with seed 7506 for paired intervals. The tables count unsuccessful and missing branches in the frozen denominators.
 
-The shared checkpoint stores the simulator databases, random state, clock, original numbered plan, visible conversation, and pending request. Each continuation restores its own copy. The runner verifies the file checksums, the simulator state's model-hash digest, and the visible history digest. The recorded pending tool result says the request has not executed. The branch then receives the benchmark's intervention text as a user message.
+\input{generated/tables.tex}
+\input{generated/results.tex}
+
+\section{Study II: Commit-Boundary Triage}
+\subsection{Paired evaluation}
+We reused twelve historical task families, selecting one intervention per family in prespecified operation categories and ascending family-ID order. Selection used the original instructions, update, checkpoint and isolated-effect evidence. It used no old method scores. Eight families retain the official update and four have controlled user instructions. The controlled tasks test explicit permission for an exact inverse, independent work with priorities, and a still-authorized order. Two different pilot families were used for engineering checks. The twelve formal families overlap the historical study and contribute no new independent sample to Study I.
+
+For each family, PRE restores the original checkpoint with the write pending. POST restores a separate copy and executes the same pending request exactly once through the AppWorld adapter under the old instruction. An independent predicate verifies the resulting state change. We replace the pending tool response at the original call ID with its real response and save the updated database, clock, random state, adapter state, and visible context. The latest user message is identical within each pair. There are no intervening model calls. Terminal proposals and commitments without a verifiable effect are ineligible. Each method independently restores the matching PRE or POST snapshot.
 
 \begin{figure}[t]
 \centering
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.17}
+\renewcommand{\arraystretch}{1.15}
 \begin{tabular}{c}
-\fbox{Original goal $\to$ shared plan and execution} \\
+\fbox{One saved prefix and proposed AppWorld write} \\
+$\swarrow$ \hspace{3.1cm} $\searrow$ \\
+\fbox{PRE: keep pending}\hspace{.2cm}\fbox{POST: submit once} \\
+\multicolumn{1}{c}{Same revised user instruction in both worlds} \\
 $\downarrow$ \\
-\fbox{Checkpoint before pending write} \\
-$\downarrow$ \quad Restore separately and append user update \\
-\fbox{A: Continue}\quad\fbox{B: Replan}\quad\fbox{C: Edit} \\
-\fbox{R: Consolidate}\quad\fbox{C+: Intent and receipts} \\
-\fbox{C++: Guarded C+} \\
-\fbox{C5: Local validation}\;\fbox{G5: Guarded C5} \\
+\fbox{Native A}\quad\fbox{Procedure P}\quad\fbox{PACT queue and gate} \\
 $\downarrow$ \\
-\fbox{Shared executor $\to$ trace and final state} \\
-\small D: initial world $+$ standalone revised goal
+\fbox{Independent trace and saved-state adjudication}
 \end{tabular}
-\caption{Checkpoint-matched continuations. An isolated probe validates the pending write for inclusion. D estimates difficulty from the initial world.}
-\label{fig:design}
+\caption{Commit-boundary pairing. Each branch runs in a separate restored world. The POST receipt records a verified effect of the exact pending request.}
+\label{fig:pact}
 \end{figure}
 
-\subsection{Continuation strategies}
-\textbf{A. Native continuation.} The executor proceeds with the updated conversation. The original numbered plan remains part of the shared history. This captures what the same tool-using model can do when it receives the update directly.
+\subsection{Matched execution conditions}
+Native A receives the shared history and update. Procedure P also receives explicit instructions to pause, inspect the old and new user requests and real receipts, classify affected work, report conflict, await authorization when necessary, and resume independent tasks in the requested order. PACT receives the same procedure and applies it through program state. All three have the same AppWorld tools, model and 24-call limit. Each may report a conflict, request a decision, and end the session using the same conversation tools. The simulated user does not reply. The original completion API is present in every arm. Branch order rotates within families. We include planning, repair, and retried transport calls in the 24-call cap.
 
-\textbf{B. Full replanning.} The model writes a new list of remaining steps from the shared history and latest user instruction. The plan prompt asks it to reuse earlier progress. The executor receives the new list as guidance and can still adapt to subsequent tool responses.
+\subsection{PACT execution control}
+\textbf{Pause and assess.}
+The runner advances the goal version and does not dispatch pending requests left by the old version. The last visible receipt distinguishes pending from committed. One model call identifies whether the operation was withdrawn or retained and produces concise cards with an API, selectors, a user-text excerpt, priorities, and dependencies. One repair is available for parsing errors. The program assigns stable positions, validates references and declared API parameters, and blocks cyclic or unresolved dependencies. Unusable assessments provide no permission for an affected write.
 
-\textbf{C. Local revision.} The model produces a list of operations on integer step identifiers. It may keep or delete an existing step, or replace it with an ordered list of steps. Unmentioned steps keep their positions. Deleting an already completed step removes it from the remaining plan. The simulator retains its committed effects. The parser validates the patch and emits a remaining list in the same format as B.
+\textbf{Classify and triage.}
+An uncommitted withdrawal is canceled. A committed effect that remains appropriate is kept. A conflicting effect is reported. If the revised request authorizes a documented inverse and the committed receipt identifies the exact object, the inverse enters the queue. Otherwise the controller logs a decision request, and the affected scope waits. The queue dispatches only authorized work with satisfied dependencies. Explicit priority propagates to prerequisites, and input order breaks ties. A read or documentation lookup can establish facts while the write remains pending.
 
-\textbf{R. Instruction consolidation.} The model turns the two user messages into one effective instruction. It sees the shared history, prior plan, and pending request. The resulting instruction is added to the original conversation. It guides execution in the original world without generating a new list of steps.
+\textbf{Gate and resume.}
+Before invoking the adapter, the controller compares a candidate write with the selected task, the documented endpoint, and argument values grounded in user text or prior visible responses. A conflicting boundary write, unsupported inverse, unassigned request, or out-of-order effect receives a tool rejection and does not enter AppWorld. Known API-specific response fields confirm the effects PACT can track. Other responses leave completion unverified. Scoring uses simulator snapshots offline, independently of these runtime states. The controller uses public API schemas and visible operation receipts and does not consume private task labels, database observations, or revised evaluator output.
 
-\textbf{C+. Intent-aware local revision.} One structured reply identifies active requirements and their sources, revoked requirements, unresolved requirements, cited execution evidence, and edits to the original step IDs. Each receipt is reconstructed from an actual model-visible tool call and its result. A receipt records an API name, arguments, response status, and bounded result fields, including visible object IDs when available.
+\subsection{Appropriate Resolution Rate}
+Each family and boundary has a frozen set of necessary conditions. PRE cancellation requires withholding the withdrawn effect and completing any authorized remainder. POST waiting requires a report identifying the committed effect, a decision request grounded in that receipt, preservation of the effect while awaiting the user, and completion of independent work when applicable. Authorized repair requires the exact inverse and verified state. A still-authorized operation stays in effect or may proceed once. Additional conditions cover unauthorized writes, retained work, and explicit priority or dependency. We refer to the fraction satisfying all applicable conditions as Appropriate Resolution Rate (ARR).
 
-The parser verifies step and receipt IDs, edit syntax, and compatibility with a small set of completion checks. Pending and rejected requests cannot support completion. A draft reply cannot establish that a message was sent. Remaining steps are preserved in order. A replacement inherits the original position and receives a deterministic child identifier. During execution the agent receives the resulting intent, remaining plan, and recent receipts. Later receipts are appended without extra model calls, and the executor avoids automatically inferring semantic completion from them.
+Reports and questions are checked against the actual receipt and scoped identifiers. Independent note, order, alarm, and payment checks use saved database states and effectful requests. The evaluator records a missing primary condition as unsuccessful. It reports nonapplicable secondary metrics separately. Unresolved communication references are inspected with arm names hidden. We report a sensitivity check for exact alternative references to the committed object. We preserve the prior benchmark score for interpretable natural PRE runs as a supplement. POST and controlled cases use ARR because the old final-state evaluator cannot interpret their changed conditions. Primary paired comparisons are PACT against P and A at each boundary, resampling by family. The boundary interaction is computed within family by subtracting the PRE contrast from the POST contrast.
 
-\textbf{C++. Guarded local revision.} C++ uses the C+ prompt and state. It derives a narrowly scoped signature from the pending request when the user update and inferred intent explicitly support its withdrawal. Supported signatures cover a limited set of send, reply, and payment operations.
+\input{generated/case_analysis.tex}
 
-\textbf{C5. Robust intent-aware revision.} C5 normalizes decimal strings only in step-number positions and merges same-status evidence for the same step. It verifies the intent, evidence, and edit modules separately. A disputed receipt leaves the corresponding step unknown. For instance, a draft or lookup cannot substantiate a completed email send. Validation uses visible receipt identities, operation classes, and matching target terms. Unresolved edits are withheld. The one repair prompt identifies affected fields and lists the valid step and receipt IDs. C5 retains the best usable revision before execution. Full, partial, and native fallback are distinct outcomes.
+\section{Discussion and Limitations}
+Checkpoint eligibility favors tasks with discrete and observable effects. The paired design tests a boundary effect under a known tool proposal. It does not approximate concurrent network requests that may already be in flight. A simulated POST effect can have a different cost or social meaning outside AppWorld. The natural cases come from historical families observed during method development, so the PACT evaluation is exploratory. Controlled cases contain researcher-authored instructions, one model service contributes all continuations, and the user never answers an escalation. With twelve families and one sampled trajectory per cell, intervals capture family variability within this sample. They do not capture repeat-generation or provider drift.
 
-\textbf{G5. Guarded C5.} G5 shares the exact revision output with C5 and charges each branch the same logical planning allowance. Its deterministic policy derives a narrow rule only when the update explicitly withdraws an action and the active intent does not still call for it, or when an explicitly replaced amount can be matched. A withdrawn draft send, for example, can use the visible draft ID without asking the user to repeat it. Rules match the precise API and target parameters. A status-only completion remains allowed. Unknown requests proceed, and blocked requests return a tool error before simulator invocation. The applicability rules use neither the benchmark answer nor the effect monitor. The guard makes no additional model calls.
+The controller's capability depends on the association between task cards and concrete API arguments. Public descriptions and literal selectors support a small set of operations. They cannot resolve every semantic reference or protect against every side effect of a valid call. Broadly defined tasks can be blocked even when authorized, and the completion predicates cover only independently verified changes. A rejected request compatible with an eventual goal can still be premature under the specified queue. We report these candidates separately from verified false blocks. The historical evaluator compatibility analysis is a sensitivity check, and all primary historical values retain their frozen scores.
 
-\textbf{D. Standalone revised goal.} The same model starts from the initial simulator state and gets the full revised instruction. It creates an initial plan and uses the same executor. This measures whether the revised task is achievable from scratch under the chosen model and tool interface. D starts from a different world state relative to A/B/C and is reported separately.
-
-The structured methods make one initial call and can request one repair. These calls count against the same budget as tool execution. Validation failures remain in each method's denominator.
-
-\subsection{Effect monitoring and scoring}
-Annotations specify a state transition and a corresponding candidate endpoint for each withdrawn operation. For example, stopping a subscription renewal requires detecting a newly created subscription record belonging to the simulated user. A recipient change can be monitored by testing actual membership of the superseded recipients in an outgoing message. Last-state comparisons are evaluated separately from committed violations. If a branch commits a prohibited change and later restores the original value, its earlier violation remains in the trace.
-
-Let $F_i$ indicate that the revised checks for case $i$ pass, $R_i$ indicate satisfaction of its explicitly annotated retained constraints, and $V_i$ indicate at least one monitored withdrawn effect after the update. Where coverage is decidable, strict success is $S_i = F_i R_i(1-V_i)$. A case without an applicable retained constraint uses $R_i=1$. Retention rates are reported over applicable constraints, and the paper identifies overlap with the terminal evaluator. Official InterventionBench pass is reported separately because its swap and drop rules also check that the original goal does not pass. A missing branch contributes no success to the fixed-denominator analysis and has unknown violation status. The final-state miss rate uses only final passes with decidable violation status.
-
-\section{Experimental Setup}
-\subsection{Environment and data}
-The experiments use AppWorld \texttt{0.1.3.post1}, data version \texttt{0.1.0}, and InterventionBench v1.1 at commit \texttt{7fe53126}. The released AppWorld file contains 1,197 rows. The benchmark skips 109 rows, and 493 of the 1,088 active rows fall into the swap or partial-drop scope. Two diagnostic families are reserved for end-to-end checks. The remaining candidates are partitioned by family with seed 7506 into 16 pilot families and 81 formal families. Each family is assigned one stratum and contributes at most one admitted instance.
-
-Effect observability and feasibility determine the prefix filter. Cases lacking a reviewed state predicate are recorded as unavailable. Other recorded outcomes include reaching a simulator finish or model-call limit before a pending write, and a proposed boundary that fails the isolated probe. Screening uses the original instructions and a single shared prefix per attempted candidate. The formal manifest is frozen before any formal continuation output is generated. This evaluation estimates outcomes on families with observable, confirmable pre-write transitions.
-
-The original screen attempted 72 candidate variants. Thirty-eight attempts did not produce a qualifying pending request, and two proposed requests failed the isolated probe. The queue yielded 32 families, including 26 swaps and six partial drops. The expansion froze monitoring rules for 35 untried variants in families without an admission. The executor screened 29 variants and bypassed six whose families already had an admission. Eight families qualified, including three swaps and five partial drops. We used the same call limit and scoring rules for both batches. Every selected family is outside the pilot and diagnostic sets.
-
-\subsection{Model and tool interface}
-The model is the DeepSeek API's \texttt{deepseek-flash}, identified by the provider as DeepSeek-V4.1-Flash-1017 at setup, with thinking disabled~\cite{deepseekpricing}. The model sees a list of available simulator applications. It can request official API documentation and issue one API operation per execution turn. The simulator handles authentication, and the model receives the visible tool responses. Private scoring annotations, evaluation outputs, and checkpoint probes stay outside its inputs.
-
-A shared prefix has a limit of 20 model calls, and each continuation has a limit of 24 calls including its planning and repair calls. D has a 44-call limit. Each response can use at most 512 output tokens. Strategy order rotates across families. A branch can end via the simulator completion call, an unstructured model stop, the call limit, or an infrastructure failure. These outcomes remain distinguishable in the trace.
-
-\subsection{Pilot and analysis}
-Eight separate pilot families covered six swaps and two partial drops. V4 evaluated R, C+, and C++ after format and execution checks. V5 first replayed saved outputs without calling the model. A predictor and a separate labeling process evaluated the guard on historical requests, isolated boundary positives, and pilot and synthetic controls. Natural application writes with no confirmed violation or independent negative label were left unknown. After one repair for negated intent, a simulator control verified that the guarded draft send did not change state and that a subsequent lookup succeeded. The guarded and unguarded revisions then ran on the same eight pilot families.
-
-The V5 contrasts are C5 versus C+, C, and A, and G5 versus C5. The 40 previously analyzed families form an exploratory paired cohort. A separate confirmation batch draws from unused families, screening partial drops first with the same boundary rule. We freeze each eligible manifest before running its continuations. A paired bootstrap resamples families 10,000 times with seed 7506. Switch counts and exact unadjusted McNemar tests are available in the result files. Costs use peak-price token receipts with unresolved reservations shown separately. A shared revision is charged once in the cash ledger and attributed to both arms in logical per-method costs.
-
-\IfFileExists{generated/results.tex}{\input{generated/results.tex}}{%
-\section{Results}
-The formal prefix screen is in progress. The final manuscript will use result tables and case descriptions generated from the frozen manifest and its saved trajectories.}
-
-\section{Limitations}
-The admitted families are conditional on the model reaching a confirmed pre-write boundary under the original instruction. This selection favors tasks with discrete effects that can be monitored in the available simulator. It can exclude tasks that require a long sequence of actions before a withdrawn write, as well as changes that only relax a constraint. The comparison therefore applies to the admitted families and their observed checkpoints. The prefix-screening denominator is reported so that readers can distinguish the formal cohort from the broader source benchmark.
-
-The intervention arrives immediately before a tool call here. That boundary enables isolation and verification, but users can also interrupt between calls, after a successful write, or during an operation that cannot be atomically deferred. The effect rules are case specific. They detect specified changes in the simulator rather than every semantic violation a user might care about. An official assertion can also differ in coverage from a corresponding human judgment of the revised instructions. The use of the same evaluator across branches controls one source of variation while leaving this benchmark dependence intact.
-
-The study uses one model and one continuation per branch. The paired intervals reflect resampling of the admitted families and omit repeated-generation or provider-version variation. C5 simultaneously changes normalization, validation, and repair feedback. Its comparison measures a system-level effect. G5 shares the same initial state prediction with C5, but the subsequent generations are independent. Case-level outcomes may differ even in the absence of a block.
-
-The pre-execution check covers a small set of documented operations and requires specific evidence of withdrawal. Actions with unclear request scope proceed. The boundary probes were selected as verified positives and give no estimate of the natural positive rate. The set of known natural negatives is also limited. A guard can miss a revoked operation expressed through different arguments, as the traced return episode shows.
-
-The standalone condition provides a difficulty reference. Starting from the initial state changes the amount of work remaining and may remove opportunities to reuse earlier effort. A D success alongside an A/B/C failure flags a possible adaptation issue, while a D failure indicates difficulty under the revised task itself. Causal attribution remains unresolved at the case level.
-
-\IfFileExists{generated/conclusion.tex}{\input{generated/conclusion.tex}}{}
+\input{generated/conclusion.tex}
 
 \section*{Reproducibility}
-The study archive includes the source and environment lock, the ordered candidate index, frozen execution settings, the formal manifest, and the analysis scripts. The per-branch results use benchmark identifiers and numeric outcomes. They support recomputation of the reported contrasts without reusing earlier experiment results. Raw simulator state and model trajectories are retained locally because they can contain protected benchmark material and simulated credentials. Results are reproducible from these retained traces. Repeating the inference experiment depends on the provider's model and decoding behavior at the time of execution.
+The archive includes the dependency lock, frozen manifests, evaluation code, branch-level results, and table generator. Raw trajectories and worlds stay in the original workspace. The same ledger meters all requests. The archived tables rebuild the paper offline.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

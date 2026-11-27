@@ -1,0 +1,13 @@
+intervention_id,boundary,method,arr_before_pilot_correction,disposition_before_pilot_correction,independent_before_pilot_correction,status,trace
+340,PRE,A,1,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/PRE/A.score.json
+340,PRE,P,1,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/PRE/P.score.json
+340,PRE,PACT,0,1,0,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/PRE/PACT.score.json
+340,POST,P,0,0,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/POST/P.score.json
+340,POST,PACT,0,0,0,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/POST/PACT.score.json
+340,POST,A,0,0,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_340/POST/A.score.json
+750,PRE,P,0,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/PRE/P.score.json
+750,PRE,PACT,0,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/PRE/PACT.score.json
+750,PRE,A,0,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/PRE/A.score.json
+750,POST,PACT,1,1,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/POST/PACT.score.json
+750,POST,A,0,0,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/POST/A.score.json
+750,POST,P,0,0,1,"original technical pilot, superseded scoring audit",artifacts/raw/pact/pilot_first/case_750/POST/P.score.json
