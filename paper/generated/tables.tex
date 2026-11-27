@@ -1,98 +1,21 @@
 \begin{table*}[t]
 \centering
-\caption{Historical cohort, frozen primary scores. Costs are logical mean USD per branch and conditional on strict or standalone success.}
+\caption{Frozen historical outcomes, with the independent nine-family confirmation shown separately. D starts from the revised goal in the initial world.}
 \label{tab:history}
-\small
-\begin{tabular}{lrrrrrrrr}
-\toprule
-Arm & Final & Official & Strict & Supervisor & Application & Misses & USD & USD if success \\
-\midrule
-A & 27/40 & 27/40 & 24/40 & 5/40 & 0/40 & 3/27 & 0.0017 & 0.0012 \\
-B & 25/40 & 25/40 & 21/40 & 7/40 & 0/40 & 4/25 & 0.0036 & 0.0028 \\
-C & 27/40 & 27/40 & 24/40 & 3/40 & 0/40 & 3/27 & 0.0028 & 0.0026 \\
-R & 25/40 & 25/40 & 21/40 & 7/40 & 0/40 & 4/25 & 0.0023 & 0.0018 \\
-C+ & 26/40 & 26/40 & 22/40 & 7/40 & 0/40 & 4/26 & 0.0042 & 0.0033 \\
-C++ & 25/40 & 25/40 & 23/40 & 6/40 & 0/40 & 2/25 & 0.0043 & 0.0032 \\
-C5 & 25/40 & 25/40 & 22/40 & 6/40 & 0/40 & 3/25 & 0.0058 & 0.0050 \\
-G5 & 24/40 & 24/40 & 21/40 & 6/40 & 1/40 & 3/24 & 0.0055 & 0.0048 \\
-D & 24/40 & 24/40 & -- & -- & -- & -- & 0.0054 & 0.0036 \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\begin{table*}[t]
-\centering
-\caption{Unused-family confirmation. The columns match Table~\ref{tab:history}.}
-\label{tab:confirm}
-\small
-\begin{tabular}{lrrrrrrrr}
-\toprule
-Arm & Final & Official & Strict & Supervisor & Application & Misses & USD & USD if success \\
-\midrule
-A & 4/9 & 4/9 & 4/9 & 0/9 & 0/9 & 0/4 & 0.0019 & 0.0015 \\
-C & 4/9 & 4/9 & 4/9 & 0/9 & 0/9 & 0/4 & 0.0063 & 0.0056 \\
-C5 & 4/9 & 4/9 & 3/9 & 1/9 & 0/9 & 1/4 & 0.0074 & 0.0059 \\
-G5 & 4/9 & 4/9 & 3/9 & 1/9 & 0/9 & 1/4 & 0.0059 & 0.0061 \\
-D & 5/9 & 5/9 & -- & -- & -- & -- & 0.0075 & 0.0060 \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\begin{table*}[t]
-\centering
-\caption{Strict success by cohort and intervention type.}
-\label{tab:strata}
 \small
 \begin{tabular}{lrrrrrr}
 \toprule
-Group & Cases & A & C & C+ & C5 & G5 \\
+Arm & Final & Strict & Supervisor & Application & New final & New strict \\
 \midrule
-Historical swap & 29 & 18/29 & 18/29 & 16/29 & 16/29 & 15/29 \\
-Historical drop & 11 & 6/11 & 6/11 & 6/11 & 6/11 & 6/11 \\
-New swap & 6 & 4/6 & 4/6 & -- & 3/6 & 3/6 \\
-New drop & 3 & 0/3 & 0/3 & -- & 0/3 & 0/3 \\
+A & 27/40 & 24/40 & 5/40 & 0/40 & 4/9 & 4/9 \\
+B & 25/40 & 21/40 & 7/40 & 0/40 & -- & -- \\
+C & 27/40 & 24/40 & 3/40 & 0/40 & 4/9 & 4/9 \\
+R & 25/40 & 21/40 & 7/40 & 0/40 & -- & -- \\
+C+ & 26/40 & 22/40 & 7/40 & 0/40 & -- & -- \\
+C++ & 25/40 & 23/40 & 6/40 & 0/40 & -- & -- \\
+C5 & 25/40 & 22/40 & 6/40 & 0/40 & 4/9 & 3/9 \\
+G5 & 24/40 & 21/40 & 6/40 & 1/40 & 4/9 & 3/9 \\
+D & 24/40 & -- & -- & -- & 5/9 & -- \\
 \bottomrule
 \end{tabular}
 \end{table*}
-
-\begin{table*}[t]
-\centering
-\caption{Strict-success switches and family-bootstrap intervals in percentage points.}
-\label{tab:paired}
-\small
-\begin{tabular}{llrrrrrr}
-\toprule
-Cohort & Contrast & Cases & First only & Second only & Both & Neither & Difference [95\% CI] \\
-\midrule
-Hist. & C5 vs C+ & 40 & 1 & 1 & 21 & 17 & +0.0 [-7.5, 7.5] \\
-Hist. & C5 vs C & 40 & 1 & 3 & 21 & 15 & -5.0 [-15.0, 5.0] \\
-Hist. & C5 vs A & 40 & 0 & 2 & 22 & 16 & -5.0 [-12.5, 0.0] \\
-Hist. & G5 vs C5 & 40 & 1 & 2 & 20 & 17 & -2.5 [-12.5, 5.0] \\
-New & C5 vs C & 9 & 0 & 1 & 3 & 5 & -11.1 [-33.3, 0.0] \\
-New & C5 vs A & 9 & 0 & 1 & 3 & 5 & -11.1 [-33.3, 0.0] \\
-New & G5 vs C5 & 9 & 0 & 0 & 3 & 6 & +0.0 [0.0, 0.0] \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\begin{table}[t]
-\centering
-\caption{Independent sensitivity scores for the historical cohort. D uses revised final success. Other methods use strict success.}
-\label{tab:audit}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-Arm & Cases & Frozen & Audited & Gain \\
-\midrule
-A & 40 & 24 & 26 & 2 \\
-B & 40 & 21 & 24 & 3 \\
-C & 40 & 24 & 27 & 3 \\
-R & 40 & 21 & 24 & 3 \\
-C+ & 40 & 22 & 25 & 3 \\
-C++ & 40 & 23 & 26 & 3 \\
-D & 40 & 24 & 27 & 3 \\
-C5 & 40 & 22 & 24 & 2 \\
-G5 & 40 & 21 & 23 & 2 \\
-\bottomrule
-\end{tabular}
-\end{table}

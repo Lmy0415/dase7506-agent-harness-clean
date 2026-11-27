@@ -1,0 +1,81 @@
+{
+  "ordering": "slot order then ascending family_id, first eligible, no old score input",
+  "formal_slots": [
+    [
+      "payment_request",
+      "venmo.create_payment_request",
+      "don't send the venmo request"
+    ],
+    [
+      "cart_only",
+      "amazon.place_order",
+      "add that chair"
+    ],
+    [
+      "payment_keep",
+      "phone.send_text_message",
+      "skip the 'done'"
+    ],
+    [
+      "forward",
+      "gmail.forward_email_from_thread",
+      "forget the forwarding"
+    ],
+    [
+      "reply",
+      "gmail.reply_to_email",
+      "forget the replies"
+    ],
+    [
+      "download",
+      "gmail.download_attachment",
+      "don't download"
+    ],
+    [
+      "label",
+      "gmail.label_thread",
+      "forget the labeling"
+    ],
+    [
+      "alarm",
+      "phone.create_alarm",
+      "befriend my first phone contact"
+    ],
+    [
+      "alarm_repair",
+      "phone.create_alarm",
+      "weekly meetings"
+    ],
+    [
+      "note_repair",
+      "simple_note.create_note",
+      "forget the habit log"
+    ],
+    [
+      "selective",
+      "phone.send_text_message",
+      "compose a gmail draft"
+    ],
+    [
+      "keep_order",
+      "amazon.place_order",
+      "cutting board shortlist"
+    ]
+  ],
+  "pilot_slots": [
+    [
+      "request_repair",
+      "venmo.create_payment_request",
+      "denise cart total"
+    ],
+    [
+      "selective",
+      "gmail.send_email_from_draft",
+      "leave it as a draft"
+    ]
+  ],
+  "source_manifests": [
+    "protocol/harness_v4_manifest.json",
+    "protocol/harness_v5_new_manifest.json"
+  ]
+}

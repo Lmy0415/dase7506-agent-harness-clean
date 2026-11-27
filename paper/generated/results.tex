@@ -1,20 +1,7 @@
-\section{Results}
-\input{generated/tables.tex}
-\subsection{Offline structure and guard tests}
-Among the 40 saved C+ responses and any repairs, the original parser admitted full state for 21 families. Representation normalization alone reached 36. After checking evidence and preserving independent modules, C5 retained 25 full and 15 partial states. These replay counts measure representation and evidence quality.
+\subsection{Historical results}
 
-The guard replay used 689 natural successful requests. Of these, 385 had unknown labels. The 35 confirmed natural positives were supervisor answer submissions. Both policies missed them. No application-side violation was observed in these historical natural trajectories, so application recall cannot be estimated there. G5 caught 5/31 isolated application-positive boundary probes. The real pilot control yielded 1 correct block and 1 correct allow. The positive probes were selected by construction and contain no negative examples.
+Table~\ref{tab:history} summarizes 405 frozen historical branches. C+ fell back in 19/40 after a first-round failure on 21 families. Decimal normalization and merging consistent references rescued 15 of the 19 fallbacks under original checks. Full C5 validation retained 25 complete and 15 partial states in the replay. In actual continuations C5 produced 30 full and 10 partial states. Its strict success was 22/40, equal to C+ with paired difference +0.0 [-7.5, 7.5] percentage points (1 win and 1 loss). The contrasts to C and A were -5.0 [-15.0, 5.0] and -5.0 [-12.5, 0.0] points.
 
-\subsection{Checkpoint-matched execution}
-Tables~\ref{tab:history} and \ref{tab:paired} report frozen primary outcomes. On the historical families, C5 yielded 30 full, 10 partial, and 0 fallback states. It downgraded evidence for 11 steps. The historical C5 versus C+ contrast has 1 gain and 1 loss. Tables separate swaps and partial drops. Retention has no independent formal denominator.
+Historical natural replay included 689 successful requests, of which 385 had unverified labels. All 35 observed positives were supervisor submissions, and neither guard detected them. G5 identified six of 40 isolated boundary positives and correctly blocked a draft send in a simulator control. In V5 formal execution it made 223 checks with no blocks. In return case 737, the exact rule covered the original order while six returns on other orders reached the simulator.
 
-G5 derived rules on 8/40 historical families and evaluated 186 tool requests. It blocked 0 and marked 78 unknown. The audit could independently verify 0 true conflicts and 0 false blocks. Case-level differences can arise from the later model generations.
-
-The prespecified unused-family queue yielded 9 qualified families from 35 prefix attempts. C5 achieved 3/9, compared with 4/9 for C and 4/9 for A (Table~\ref{tab:confirm}). The new sample is reported separately because admission is conditional and its small number of families limits precision. A zero-width interval records a sample with no discordant pairs.
-
-\subsection{Cost and evaluator sensitivity}
-V5 returned 1,529 token receipts, with a peak-price estimate of \$1.0053. The cumulative project occupation including unresolved reservations was \$3.7755 of \$10. The logical cost columns charge each arm for shared planning, while the cash ledger counts each shared revision once. Short failed runs can lower average cost.
-
-Table~\ref{tab:audit} applies compatibility corrections uniformly to the audited families using saved terminal states. The original evaluator is the primary measure. Correcting a model-diff inconsistency or a withdrawn return assertion is a change in measurement. It does not alter the agents or their traces.
-
-\input{generated/case_analysis.tex}
+An independent audit of five common Drop failures found a notification-filter inconsistency in cases 267 and 272 and mismatched return checks in case 737. The audit changed historical strict counts for A/C/C+/C5/G5 from 24/24/22/22/21 to 26/27/25/24/23 of 40. The frozen scores remain primary and the audit is reported independently.

@@ -1,6 +1,6 @@
 # DASE7506 Final Project
 
-This project studies how an LLM agent revises an in-progress task when the user changes the goal. The continuations share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. See the [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), [final V5 protocol](DASE7506_Harness_V5_Final_Experiment.md), and [progress log](PROGRESS.md).
+This project studies how an LLM agent revises an in-progress task when the user changes the goal. The continuations share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. See the [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), [final V5 protocol](DASE7506_Harness_V5_Final_Experiment.md), [PACT supplement](DASE7506_PACT_Novelty_Extension.md), and [progress log](PROGRESS.md).
 
 ## Local setup
 
@@ -120,7 +120,7 @@ The historical integrity check uses the local V4 parent commit. In a clone with 
 
 The paid resume entry points for V5 are `.venv/bin/python -m src.harness_v5 formal` and `.venv/bin/python -m src.v5_sampling all`. They use the frozen manifests and skip already scored branches. Use the archived history and a new named batch to repeat a study with newly generated checkpoints.
 
-The checked-in V5 tables are sufficient to regenerate the final paper and Overleaf archive without a model call.
+Use the V5 archival commit to regenerate that historical manuscript and Overleaf archive without a model call. The current manuscript uses the PACT renderer below.
 
 ```bash
 .venv/bin/python -m scripts.render_v5
@@ -128,3 +128,24 @@ The checked-in V5 tables are sufficient to regenerate the final paper and Overle
 ```
 
 The manuscript was rebuilt using Tectonic 0.17.0 and IEEEtran 1.8b. For a local Tectonic cache without IEEEtran, place `IEEEtran.cls` and `IEEEtran.bst` from the [CTAN package](https://ctan.org/pkg/ieeetran) under `.upstream/latex/IEEEtran/`. For a standard TeX Live installation, use `scripts/build_paper.py --engine latexmk`. The source archive uses Overleaf's standard IEEEtran class, and its extracted source was compiled locally. Upload it through New Project → Upload Project and select `main.tex`. Author names, student IDs, and affiliations are marked for completion.
+
+### PACT commit-boundary extension
+
+PACT uses twelve of the previously admitted task families. It compares native continuation, the same complete procedure in a prompt, and a controller with an authorization queue. A paired POST state executes the formerly pending request through AppWorld exactly once before the same user update. The frozen PRE state contains the original pending response. There is no inference between these states.
+
+- [Protocol](DASE7506_PACT_Novelty_Extension.md), [selection](protocol/pact_selection.json), [matched manifest](protocol/pact_manifest.json), [formal settings](protocol/pact_settings.json), and [evaluator-only labels](protocol/pact_evaluation.json).
+- [Branch data](results/pact/branch_metrics.csv), [boundary evidence](results/pact/boundary_checks.csv), [summary](results/pact/summary.csv), [paired estimates](results/pact/paired.csv), [budget](results/pact/budget.json), and [case index](results/pact/case_index.csv).
+- [中文研究说明](docs/PACT_WALKTHROUGH_ZH.md) and the V5 manuscript in the history rooted at commit `5fb43a463c5d24c4adedd6039ef2f9b397e681c2`.
+
+Reconstruct checked-in statistics from the retained raw files, then render the integrated paper.
+
+```bash
+.venv/bin/python -m scripts.pact_analyze
+.venv/bin/python -m scripts.pact_reference_audit
+.venv/bin/python -m scripts.render_pact
+.venv/bin/python scripts/build_paper.py
+```
+
+With the original checkpoints and stored terminal worlds, `.venv/bin/python -m src.pact_score formal` reconstructs missing independent grades without model calls. `.venv/bin/python -m scripts.pact_control` runs the two isolated AppWorld controls without a model. The evaluation labels and observations stay outside the model requests and controller. The evaluator is a separate program and has local access to simulator state.
+
+The paid resume command is `.venv/bin/python -m src.pact_runner formal`. It verifies the frozen files and skips valid completed branches. An interrupted branch with previously committed effects is preserved for inspection. PACT budgets all requests through the project ledger with a stricter internal ceiling. In a clone, `scripts.render_pact` and the checked-in statistics rebuild the paper without raw data or provider access.

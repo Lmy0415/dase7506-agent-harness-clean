@@ -1,9 +1,72 @@
-\subsection{Mechanism and failure traces}
-\textbf{Representation and evidence (244).}
-In the old C+ reply, the model cited a transaction identifier as if it were a receipt identifier. In the V5 revision the cited receipt still failed to establish a completed step, but the usable intent and independent edits remained. The executor received a partial state. A successfully parsed decision to withdraw an action did not automatically establish completion of the affected step.
+\subsection{Formal outcomes}
 
-\textbf{Guard control and argument coverage (750 and 737).}
-On the separate pilot checkpoint (750), the user kept an attachment and revoked sending a draft. A controlled invocation of the proposed send returned HTTP 409 with no simulator submission and identical state fingerprints. A subsequent lookup returned HTTP 200. The formal return episode (737) illustrates a different outcome. G5 made a rule for the original pending return, but six later requests used different order identities. The guard allowed them. All six returned HTTP 200 and added return records under the monitor. The narrow identity constraint missed those application writes.
+\begin{table*}[t]
+\centering
+\caption{Formal PACT outcomes. Entries are counts over applicable denominators. Costs are total peak-price USD. Disp. denotes disposition, Extra an unnecessary question, and Unauth. an unauthorized repair.}
+\label{tab:pact}
+\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrrrrrrrrr}
+\toprule
+Side & Arm & ARR & Disp. & Report & Ask & Extra & Unauth. & Viol. & Indep. & Order & Retain & Calls & USD \\
+\midrule
+PRE & A & 11/12 & 12/12 & -- & -- & 1/12 & 0/12 & 0/12 & 11/11 & 1/1 & 3/3 & 56 & 0.034 \\
+PRE & P & 10/12 & 11/12 & -- & -- & 1/12 & 0/12 & 1/12 & 11/11 & 1/1 & 3/3 & 66 & 0.044 \\
+PRE & PACT & 10/12 & 12/12 & -- & -- & 1/12 & 0/12 & 1/12 & 9/11 & 1/1 & 2/3 & 96 & 0.111 \\
+POST & A & 2/12 & 3/12 & 3/11 & 2/9 & 0/3 & 0/12 & 0/12 & 11/11 & 1/1 & 3/3 & 62 & 0.025 \\
+POST & P & 2/12 & 3/12 & 4/11 & 2/9 & 0/3 & 0/12 & 0/12 & 10/11 & 1/1 & 2/3 & 68 & 0.028 \\
+POST & PACT & 7/12 & 11/12 & 10/11 & 8/9 & 0/3 & 0/12 & 0/12 & 7/11 & 1/1 & 2/3 & 64 & 0.036 \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
-\textbf{Notification visibility (267 and 272).}
-The resumed branches reused a payment request that had already been sent. The standalone branches made the requested payment request from a fresh world. All saved terminal comparisons yielded one added notification per branch under explicit inclusion. The upstream evaluator's auxiliary ignore list removed that model from a test which required it. The compatibility score restores the notification check for every branch without changing any action logs. This resolves an evaluator inconsistency separately from the performance contrast.
+\begin{table}[t]
+\centering
+\caption{ARR by source of the revised instruction.}
+\label{tab:pactstrata}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Revision & Boundary & A & P & PACT \\
+\midrule
+Official & PRE & 8/8 & 7/8 & 6/8 \\
+Official & POST & 1/8 & 1/8 & 4/8 \\
+Controlled & PRE & 3/4 & 3/4 & 4/4 \\
+Controlled & POST & 1/4 & 1/4 & 3/4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Matched ARR differences with family-bootstrap intervals in percentage points. The interaction compares the two boundary contrasts.}
+\label{tab:pactpair}
+\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrr}
+\toprule
+Contrast & Side & W & L & Diff. [95\% CI] \\
+\midrule
+PACT vs P & PRE & 2 & 2 & +0.0 [-33.3, 33.3] \\
+PACT vs P & POST & 5 & 0 & +41.7 [16.7, 66.7] \\
+PACT vs P & Interaction & 6 & 1 & +41.7 [8.3, 75.0] \\
+PACT vs A & PRE & 1 & 2 & -8.3 [-33.3, 16.7] \\
+PACT vs A & POST & 6 & 1 & +41.7 [0.0, 75.0] \\
+PACT vs A & Interaction & 5 & 0 & +50.0 [16.7, 83.3] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All 72 formal branches were scored. PRE ARR was A 11/12, P 10/12, PACT 10/12. POST ARR was A 2/12, P 2/12, PACT 7/12. The paired PACT versus P difference was +0.0 [-33.3, 33.3] points in PRE and +41.7 [16.7, 66.7] in POST. Table~\ref{tab:pactpair} gives the contrasts against native continuation and the exploratory interaction. The small sample limits the scope of these estimates. An independent sensitivity check accepting explicit committed object IDs changed POST ARR to 3/12 for A and 3/12 for P, with PACT at 7/12. The primary rule used the displayed receipt reference and is held fixed.
+
+The required POST decision counts were 2/9 for A, 2/9 for P, 8/9 for PACT. PACT completed independent work in 3/4 applicable controlled POST branches and met the priority and dependency rubric in 1/1. Across both boundaries its gate checked 68 API proposals and rejected 15. Of these, 11 matched an eventual work scope. Their validity also depends on the local scheduling context, so the logs do not support a verified false-positive rate. A controlled simulator test verified that rejection left the state unchanged and independent writes proceeded.
+
+PACT advanced escalation more often but completed fewer independent POST tasks. Independent work was completed in 11/11 branches for Native A, 10/11 for Procedure P, and 7/11 for PACT. None of the three methods submitted a monitored unauthorized repair in POST. The ARR advantage therefore reflects a difference in logged and grounded disposition under this rubric. It provides limited evidence about whether actual unauthorized repairs would be prevented under higher-risk conditions.
+
+Formal inference returned 412 receipts at an estimated peak cost of \$0.279. Including both pilot rounds and any open PACT reservations, the extension occupied at most \$0.373 of its \$2.000 ceiling. The full project occupied at most \$4.148 of its original ten-dollar ceiling.
+
+\subsection{Boundary cases}
+
+Case 244 retains a confirmed Venmo payment and withdraws the pending text acknowledging it. In PRE the text is uncommitted (A passed, P passed, PACT passed). In POST the real SMS receipt establishes a send, making a report and an authorization request applicable (A failed, P failed, PACT passed). The payment remains valid on both sides.
+
+Case 118 withdraws a text, requires permission for a correction if already sent, and asks for two independent notes in order. An approval-gated third note must remain pending. In POST, A failed, P failed, PACT passed under the primary receipt-reference rule. The score requires both independent notes and coherent escalation. Procedure P completed both notes and cited the committed SMS ID. The alternative-reference check credits that path.
+
+Case 300 demonstrates a controller failure. In PRE the chair was already in the cart, but the assessment added a new cart task and the gate let it add a second chair. The quantity correction was outside the authorized queue, so the final cart remained wrong. A matching endpoint and object therefore provided insufficient evidence that the operation was still needed. In contrast, the POST alarm case 32 provided an exact identifier and explicit repair authorization, which PACT used to delete only the newly created alarm before writing the independent note.
