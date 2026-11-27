@@ -1,0 +1,389 @@
+{
+  "design": "Unused formal families only. Drop first, existing queue rank, pinned variant hash.",
+  "admission": "Original 20-call prefix; independent confirmed withdrawn effect; first passing variant per family.",
+  "source_sha256": "8cb4b75515abd40609fb23e897a03221be9c180d4727728878e246d8805b71d6",
+  "methods_sha256": "bff3efb9fa90ec57ab1602e5d24bb6baabe25ea3f6c96180d0e23207b7d16657",
+  "max_candidate_variants": 42,
+  "target_families": 12,
+  "validated": [
+    {
+      "intervention_id": 802,
+      "task_id": "ccf4b82_2",
+      "family_id": "ccf4b82",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 5
+    },
+    {
+      "intervention_id": 289,
+      "task_id": "988af8e_1",
+      "family_id": "988af8e",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 37
+    },
+    {
+      "intervention_id": 245,
+      "task_id": "ce359b5_1",
+      "family_id": "ce359b5",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 40
+    },
+    {
+      "intervention_id": 264,
+      "task_id": "ce359b5_1",
+      "family_id": "ce359b5",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 40
+    },
+    {
+      "intervention_id": 262,
+      "task_id": "afc0fce_3",
+      "family_id": "afc0fce",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 43
+    },
+    {
+      "intervention_id": 285,
+      "task_id": "a97e35d_1",
+      "family_id": "a97e35d",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 45
+    },
+    {
+      "intervention_id": 759,
+      "task_id": "59bcfc8_1",
+      "family_id": "59bcfc8",
+      "stratum": "Drop",
+      "type": "VerbDrop",
+      "cohort": "v5_new",
+      "queue_position": 58
+    },
+    {
+      "intervention_id": 842,
+      "task_id": "986aa4e_2",
+      "family_id": "986aa4e",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 66
+    },
+    {
+      "intervention_id": 762,
+      "task_id": "986aa4e_2",
+      "family_id": "986aa4e",
+      "stratum": "Drop",
+      "type": "VerbDrop",
+      "cohort": "v5_new",
+      "queue_position": 66
+    },
+    {
+      "intervention_id": 845,
+      "task_id": "adb1060_1",
+      "family_id": "adb1060",
+      "stratum": "Drop",
+      "type": "TargetDrop",
+      "cohort": "v5_new",
+      "queue_position": 69
+    },
+    {
+      "intervention_id": 123,
+      "task_id": "6104387_3",
+      "family_id": "6104387",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 1
+    },
+    {
+      "intervention_id": 122,
+      "task_id": "6104387_2",
+      "family_id": "6104387",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 1
+    },
+    {
+      "intervention_id": 118,
+      "task_id": "29caf6f_2",
+      "family_id": "29caf6f",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 3
+    },
+    {
+      "intervention_id": 119,
+      "task_id": "29caf6f_3",
+      "family_id": "29caf6f",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 3
+    },
+    {
+      "intervention_id": 37,
+      "task_id": "ccf4b82_1",
+      "family_id": "ccf4b82",
+      "stratum": "Swap",
+      "type": "VerbSwap",
+      "cohort": "v5_new",
+      "queue_position": 5
+    },
+    {
+      "intervention_id": 136,
+      "task_id": "ccf4b82_1",
+      "family_id": "ccf4b82",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 5
+    },
+    {
+      "intervention_id": 305,
+      "task_id": "33e202d_2",
+      "family_id": "33e202d",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 7
+    },
+    {
+      "intervention_id": 304,
+      "task_id": "33e202d_1",
+      "family_id": "33e202d",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 7
+    },
+    {
+      "intervention_id": 133,
+      "task_id": "6b6ca61_1",
+      "family_id": "6b6ca61",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 9
+    },
+    {
+      "intervention_id": 34,
+      "task_id": "6b6ca61_1",
+      "family_id": "6b6ca61",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 9
+    },
+    {
+      "intervention_id": 369,
+      "task_id": "f6f2e67_2",
+      "family_id": "f6f2e67",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 11
+    },
+    {
+      "intervention_id": 45,
+      "task_id": "f6f2e67_1",
+      "family_id": "f6f2e67",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 11
+    },
+    {
+      "intervention_id": 320,
+      "task_id": "b3bdcc1_2",
+      "family_id": "b3bdcc1",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 15
+    },
+    {
+      "intervention_id": 321,
+      "task_id": "b3bdcc1_3",
+      "family_id": "b3bdcc1",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 15
+    },
+    {
+      "intervention_id": 331,
+      "task_id": "23d431c_2",
+      "family_id": "23d431c",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 17
+    },
+    {
+      "intervention_id": 332,
+      "task_id": "23d431c_3",
+      "family_id": "23d431c",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 17
+    },
+    {
+      "intervention_id": 330,
+      "task_id": "23d431c_1",
+      "family_id": "23d431c",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 17
+    },
+    {
+      "intervention_id": 324,
+      "task_id": "d37c235_1",
+      "family_id": "d37c235",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 21
+    },
+    {
+      "intervention_id": 484,
+      "task_id": "d37c235_1",
+      "family_id": "d37c235",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 21
+    },
+    {
+      "intervention_id": 312,
+      "task_id": "5e27cd7_3",
+      "family_id": "5e27cd7",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 29
+    },
+    {
+      "intervention_id": 472,
+      "task_id": "5e27cd7_3",
+      "family_id": "5e27cd7",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 29
+    },
+    {
+      "intervention_id": 137,
+      "task_id": "3fcc458_1",
+      "family_id": "3fcc458",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 31
+    },
+    {
+      "intervention_id": 38,
+      "task_id": "3fcc458_1",
+      "family_id": "3fcc458",
+      "stratum": "Swap",
+      "type": "VerbSwap",
+      "cohort": "v5_new",
+      "queue_position": 31
+    },
+    {
+      "intervention_id": 483,
+      "task_id": "ce73d68_2",
+      "family_id": "ce73d68",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 33
+    },
+    {
+      "intervention_id": 323,
+      "task_id": "ce73d68_2",
+      "family_id": "ce73d68",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 33
+    },
+    {
+      "intervention_id": 51,
+      "task_id": "988af8e_1",
+      "family_id": "988af8e",
+      "stratum": "Swap",
+      "type": "VerbSwap",
+      "cohort": "v5_new",
+      "queue_position": 37
+    },
+    {
+      "intervention_id": 150,
+      "task_id": "988af8e_1",
+      "family_id": "988af8e",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 37
+    },
+    {
+      "intervention_id": 325,
+      "task_id": "d9987f6_1",
+      "family_id": "d9987f6",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 39
+    },
+    {
+      "intervention_id": 326,
+      "task_id": "d9987f6_2",
+      "family_id": "d9987f6",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 39
+    },
+    {
+      "intervention_id": 517,
+      "task_id": "ffea2b5_3",
+      "family_id": "ffea2b5",
+      "stratum": "Swap",
+      "type": "BothSwap",
+      "cohort": "v5_new",
+      "queue_position": 49
+    },
+    {
+      "intervention_id": 41,
+      "task_id": "ffea2b5_1",
+      "family_id": "ffea2b5",
+      "stratum": "Swap",
+      "type": "VerbSwap",
+      "cohort": "v5_new",
+      "queue_position": 49
+    },
+    {
+      "intervention_id": 357,
+      "task_id": "ffea2b5_3",
+      "family_id": "ffea2b5",
+      "stratum": "Swap",
+      "type": "VerbSwap",
+      "cohort": "v5_new",
+      "queue_position": 49
+    }
+  ],
+  "annotation_exclusions": []
+}

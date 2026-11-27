@@ -1,0 +1,19 @@
+{
+  "intervention_id": 845,
+  "affected_arms": [
+    "C",
+    "A",
+    "D",
+    "C5",
+    "G5"
+  ],
+  "relocated": [
+    "dict_of",
+    "flatten",
+    "lengths_of",
+    "list_of",
+    "set_of"
+  ],
+  "assertions_changed": false,
+  "new_model_calls": 0
+}

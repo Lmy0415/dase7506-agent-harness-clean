@@ -1,0 +1,7 @@
+{
+  "pilot_intervention_id": 750,
+  "api": "gmail.send_email_from_draft",
+  "blocked": true,
+  "unchanged": true,
+  "continued": true
+}

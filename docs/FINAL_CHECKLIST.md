@@ -31,3 +31,14 @@
 | 费用和作者信息 | 通过 | [累计账本汇总](../results/harness_v4/budget.json) 含 4,062 条回执，加未结预留占用上界 2.770144776 美元，低于原 10 美元。作者姓名、学号及单位仍留给学生填写。 |
 
 远端交付使用现有 [GitHub 仓库](https://github.com/Lmy0415/dase7506-agent-harness-clean)。提交前检查远端为 Private，并从 GitHub 核对主分支的提交。
+
+## V5 最后一轮
+
+| 验收项 | 状态 | 复核证据 |
+| --- | --- | --- |
+| 保留历史与冻结输入 | 通过 | 原 V3/V4 设置、题单和逐题表与历史提交一致。40 份原快照和 9 份新快照验证数据库与上下文哈希，任务族之间无交叉。 |
+| 离线和无答案泄漏 | 通过 | [解析诊断](V5_DIAGNOSIS_ZH.md)、[字段审计](../results/harness_v5/guard_feature_audit.json)。预测与标签合并是不同进程；隔离不依赖操作系统权限沙箱。18 项测试通过。 |
+| Guard 门槛、pilot 与正式 | 通过 | [首轮误判及修复后的指标](../results/harness_v5/guard_offline_metrics.csv)、[真实模拟器控制](../results/harness_v5/guard_simulator_control.json)、独立 pilot 16/16、正式 405/405。新 C5/G5 共 98 条参与正式配对，共享同一状态生成。全部核对 512 token 和 24 次调用上限。 |
+| 分批分析和评分审计 | 通过 | [正式逐题](../results/harness_v5/branch_metrics.csv)、[配对区间](../results/harness_v5/paired.csv)、[独立评分审计](V5_EVALUATOR_AUDIT_ZH.md)。新族另报告。45 条终态做了独立复评，原分保持冻结。第 845 题的 5 条导入错误从原终态恢复，断言没变。 |
+| 论文、中文说明和复算入口 | 通过 | [LaTeX](../paper/main.tex)、[6 页 PDF](../paper/report.pdf)、[Overleaf ZIP](../deliverables/overleaf_project.zip)、[中文说明](PROJECT_WALKTHROUGH_ZH.md)、[复算命令](../README.md)。ZIP 的 8 个成员实际解包编译并逐页核对。 |
+| 费用、作者和远端 | 通过 | [费用账本汇总](../results/harness_v5/budget.json) 记录 5,591 个回执；含未结预留上界 3.775490670 USD，低于 10 USD。作者姓名、学号和单位保留待填。交付到现有 Private 仓库，保持其可见性。 |
