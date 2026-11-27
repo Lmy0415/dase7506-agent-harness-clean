@@ -5,7 +5,7 @@
 \usepackage{url}
 \IfFileExists{generated/numbers.tex}{\input{generated/numbers.tex}}{}
 
-\title{Local Plan Revision for LLM Agents under Mid-Task Goal Changes}
+\title{Intent-Aware Local Plan Revision with Runtime Enforcement for Interruptible LLM Agents}
 \author{\IEEEauthorblockN{[Author names to be supplied]}
 \IEEEauthorblockA{DASE7506 Final Project\\{[Student IDs and affiliation to be supplied]}}}
 
@@ -23,9 +23,9 @@ LLM agents, plan revision, goal changes, stateful tool use
 \section{Introduction}
 Consider an assistant preparing to send a shared artifact to two people. It has generated the artifact, and the next call would send it to the first recipient. The user now asks to send it only to the second recipient. A good continuation preserves the artifact and updates the delivery target. If the assistant sends it to both people, the intended recipient can still receive it. That final success offers incomplete evidence about whether the assistant followed the update.
 
-InterventionBench~\cite{lee2026intervention} provides user messages that modify in-progress AppWorld and WebArena tasks. We use its AppWorld instances to ask how the representation of a plan update affects an agent's continuation. An explicit new plan can account for both changed and unchanged requirements. A local edit interface instead keeps untouched steps by default, which can preserve useful structure. It can also preserve stale assumptions when affected steps are missed. Both approaches merit comparison with direct execution from the updated conversation.
+InterventionBench~\cite{lee2026intervention} provides user messages that modify in-progress AppWorld and WebArena tasks. Two questions arise when the change interrupts real tool execution. First, how much can the agent gain by rewriting the current instruction without updating its plan? Second, does explicitly recording the current instruction and execution evidence improve a local plan edit? A plan alone does not tell the executor which requirements still apply or which effects already occurred.
 
-The central design choice is to share the state immediately before a confirmed withdrawn write. Every continuation starts from one saved world and one model-produced trajectory. This makes the earlier activities and their effects common to all three strategies. Our study estimates the difference in strict success between local revision and full replanning, measures the effect of explicit replanning relative to direct continuation, and counts terminal successes that coexist with withdrawn effects in the execution history. A standalone revised task provides difficulty context for the matched comparisons.
+We compare native continuation, replanning, local editing, instruction consolidation, and local editing informed by explicit intent and execution state. We also evaluate a narrow execution check that can reject a tool request when its arguments match a documented revocation. The core comparison shares one model-produced history and one simulator checkpoint immediately before a confirmed withdrawn write. We measure revised completion, committed violations, and cost under equal continuation limits. A standalone revised task provides difficulty context.
 
 \section{Related Work}
 \subsection{Planning after feedback}
@@ -34,7 +34,14 @@ AdaPlanner uses environmental feedback to adapt self-generated plans, including 
 \subsection{Interruption and stateful evaluation}
 InterventionBench pairs original and modified tasks and studies whether agents adapt to interventions~\cite{lee2026intervention}. InterruptBench evaluates interruptible agents in stateful web navigation under additions, revisions, and retractions~\cite{zou2026interrupt}. We take AppWorld tasks and scoring programs from the former benchmark and condition inclusion on a common pre-write boundary. This isolates the choice of continuation mechanism within each admitted task family.
 
+DynaRev studies how web agents handle revisions delivered at task milestones and reports gains from rewriting instructions while preserving browser state~\cite{zhang2026dynarev}. This motivates consolidating the user's instruction while retaining the same checkpoint and conversation. Our comparison uses AppWorld tasks and a pending tool call as the interruption boundary.
+
 AppWorld supplies simulated applications and programmatic checks over world states~\cite{trivedi2024appworld}. ToolSandbox uses stateful interaction and evaluation milestones for tool use~\cite{lu2025toolsandbox}. We compare final-state evaluation with a trace-level record of withdrawn effects. The two measurements answer different questions when an effect can be reversed before the final state.
+
+\subsection{Intent state and execution checks}
+IntentFlux measures the effect of superseded user requirements, and StateForge maintains an explicit set of active requirements~\cite{zhang2026intentflux}. Our question concerns a revision that arrives after tool execution has begun. The agent must account for prior effects as it interprets the current instruction and edits its remaining plan.
+
+Zhang et al. compare displaying, directing, and enforcing task state, showing that enforcement depends on how reliably requests map to tracked states~\cite{zhang2026taskstate}. GuardAgent uses language-model reasoning to turn safety requests into executable checks~\cite{xiang2025guardagent}. In our setting, the user update and visible receipts define the evidence available for inferring a conflict. The benchmark's state predicates serve as independent evaluation.
 
 \section{Methods}
 \subsection{Task representation and boundary}
@@ -42,7 +49,7 @@ A case contains an original instruction, a user intervention, and a standalone r
 
 The model first creates a short numbered plan and follows it with AppWorld tool calls. At each proposed call, an environment-side monitor checks whether the request matches a case-specific withdrawn operation. A matching call is marked pending and withheld from the shared world. A separate probe restores the same saved state, attempts this call, and checks the related database records. Admission requires both an accepted request and an observed withdrawn state transition. This check rules out failed requests and idempotent writes that appear pertinent based on their arguments alone. The probe's world is discarded after observation.
 
-The shared checkpoint stores the simulator databases, random state, clock, original numbered plan, visible conversation, and pending request. Each A/B/C branch restores its own copy. The runner verifies the file checksums, the simulator state's model-hash digest, and the visible history digest. The recorded pending tool result says the request has not executed. The branch then receives the benchmark's intervention text as a user message.
+The shared checkpoint stores the simulator databases, random state, clock, original numbered plan, visible conversation, and pending request. Each continuation restores its own copy. The runner verifies the file checksums, the simulator state's model-hash digest, and the visible history digest. The recorded pending tool result says the request has not executed. The branch then receives the benchmark's intervention text as a user message.
 
 \begin{figure}[t]
 \centering
@@ -54,11 +61,14 @@ $\downarrow$ \\
 \fbox{Checkpoint before pending write} \\
 $\downarrow$ \quad Restore separately and append user update \\
 \fbox{A: Continue}\quad\fbox{B: Replan}\quad\fbox{C: Edit} \\
+\fbox{R: Consolidate}\quad\fbox{C+: Intent and receipts} \\
+\footnotesize C+: Current intent $+$ observed receipts $+$ edited plan \\
+\fbox{C++: C+ with a pre-execution check} \\
 $\downarrow$ \\
 \fbox{Shared executor $\to$ trace and final state} \\
 \small D: initial world $+$ standalone revised goal
 \end{tabular}
-\caption{Shared history and state for A, B, and C. An isolated probe validates the pending write. D estimates difficulty from the initial world.}
+\caption{Checkpoint-matched continuations. An isolated probe validates the pending write for inclusion. D estimates difficulty from the initial world.}
 \label{fig:design}
 \end{figure}
 
@@ -69,9 +79,17 @@ $\downarrow$ \\
 
 \textbf{C. Local revision.} The model produces a list of operations on integer step identifiers. It may keep or delete an existing step, or replace it with an ordered list of steps. Unmentioned steps keep their positions. Deleting an already completed step removes it from the remaining plan. The simulator retains its committed effects. The parser validates the patch and emits a remaining list in the same format as B.
 
+\textbf{R. Instruction consolidation.} The model turns the two user messages into one effective instruction. It sees the shared history, prior plan, and pending request. The resulting instruction is added to the original conversation. It guides execution in the original world without generating a new list of steps.
+
+\textbf{C+. Intent-aware local revision.} One structured reply identifies active requirements and their sources, revoked requirements, unresolved requirements, cited execution evidence, and edits to the original step IDs. Each receipt is reconstructed from an actual model-visible tool call and its result. A receipt records an API name, arguments, response status, and bounded result fields, including visible object IDs when available.
+
+The parser verifies step and receipt IDs, edit syntax, and compatibility with a small set of completion checks. Pending and rejected requests cannot support completion. A draft reply cannot establish that a message was sent. Remaining steps are preserved in order. A replacement inherits the original position and receives a deterministic child identifier. During execution the agent receives the resulting intent, remaining plan, and recent receipts. Later receipts are appended without extra model calls, and the executor avoids automatically inferring semantic completion from them.
+
+\textbf{C++. Guarded local revision.} C++ uses the C+ prompt and state. A deterministic check derives a narrowly scoped signature from the visible pending request only when the latest user message and inferred intent explicitly support a withdrawal. Supported signatures cover a limited set of send, reply, and payment operations. A match requires the exact API and distinguishing arguments, such as a draft ID or the combination of recipient and amount. An overlapping active requirement or insufficient evidence prevents enforcement. Unknown requests proceed. A blocked request returns a tool error before simulator invocation. The case-specific evaluator and probe never supply inputs to this check.
+
 \textbf{D. Standalone revised goal.} The same model starts from the initial simulator state and gets the full revised instruction. It creates an initial plan and uses the same executor. This measures whether the revised task is achievable from scratch under the chosen model and tool interface. D starts from a different world state relative to A/B/C and is reported separately.
 
-B and C receive one additional planning call and at most one structural repair if their output fails validation. A repair can correct the response schema without supplying a task answer. An invalid result after repair falls back to native continuation. Planning and repair calls consume the same post-intervention allocation as the execution calls. A format failure remains in the group's denominator.
+B, C, R, C+, and C++ make one initial structured call and can request one repair on validation failure. An invalid result after repair falls back to native continuation. These calls count against the same budget as tool execution. Validation failures remain in each method's denominator.
 
 \subsection{Effect monitoring and scoring}
 Annotations specify a state transition and a corresponding candidate endpoint for each withdrawn operation. For example, stopping a subscription renewal requires detecting a newly created subscription record belonging to the simulated user. A recipient change can be monitored by testing actual membership of the superseded recipients in an outgoing message. Last-state comparisons are evaluated separately from committed violations. If a branch commits a prohibited change and later restores the original value, its earlier violation remains in the trace.
@@ -84,7 +102,7 @@ The experiments use AppWorld \texttt{0.1.3.post1}, data version \texttt{0.1.0}, 
 
 Effect observability and feasibility determine the prefix filter. Cases lacking a reviewed state predicate are recorded as unavailable. Other recorded outcomes include reaching a simulator finish or model-call limit before a pending write, and a proposed boundary that fails the isolated probe. Screening uses the original instructions and a single shared prefix per attempted candidate. The formal manifest is frozen before any formal continuation output is generated. This evaluation estimates outcomes on families with observable, confirmable pre-write transitions.
 
-The screen attempted 72 candidate variants, below the prespecified limit of 100. A total of 38 attempts did not produce a qualifying pending request, and two proposed requests failed the isolated probe. The queue yielded 32 eligible families, including 26 swaps and six partial drops. The imbalance reflects limited availability of observable partial drops and a lower admission count for those tasks. The final manifest schedules A, B, C, and D for all 32 families. Every selected family is outside the pilot and diagnostic sets.
+The original screen attempted 72 candidate variants. Thirty-eight attempts did not produce a qualifying pending request, and two proposed requests failed the isolated probe. The queue yielded 32 families, including 26 swaps and six partial drops. The expansion froze monitoring rules for 35 untried variants in families without an admission. The executor screened 29 variants and bypassed six whose families already had an admission. Eight families qualified, including three swaps and five partial drops. We used the same call limit and scoring rules for both batches. Every selected family is outside the pilot and diagnostic sets.
 
 \subsection{Model and tool interface}
 The model is the DeepSeek API's \texttt{deepseek-flash}, identified by the provider as DeepSeek-V4.1-Flash-1017 at setup, with thinking disabled~\cite{deepseekpricing}. The model sees a list of available simulator applications. It can request official API documentation and issue one API operation per execution turn. The simulator handles authentication, and the model receives the visible tool responses. Private scoring annotations, evaluation outputs, and checkpoint probes stay outside its inputs.
@@ -92,9 +110,9 @@ The model is the DeepSeek API's \texttt{deepseek-flash}, identified by the provi
 A shared prefix has a limit of 20 model calls, and each continuation has a limit of 24 calls including its planning and repair calls. D has a 44-call limit. Each response can use at most 512 output tokens. Strategy order rotates across families. A branch can end via the simulator completion call, an unstructured model stop, the call limit, or an infrastructure failure. These outcomes remain distinguishable in the trace.
 
 \subsection{Pilot and analysis}
-We completed an eight-family pilot covering six swaps and two partial drops. The pilot exercised planned and direct continuations, confirmed common start-state recovery, and determined cost feasibility. The subsequent formal analysis excludes every pilot and diagnostic family. A compatibility layer relocates a small set of imported evaluator helper names for the installed AppWorld version. The changes leave the assertion expressions intact.
+Eight separate pilot families covered six swaps and two partial drops. The pilot checked structured outputs, execution-state recovery, and cost. After one validation-focused revision to the C+ and C++ format, we ran one confirmation on those pilot checkpoints. The final prompts, snapshots, order, and scoring code were frozen before the formal R, C+, and C++ continuations. We reused valid A, B, C, and D outputs. The V4 comparisons are exploratory because the baseline study informed their design. A compatibility layer relocates a small set of evaluator imports for the installed AppWorld version while preserving the assertions.
 
-The primary contrast is C minus B in strict success, measured in percentage points. We also report B minus A and C minus A. A paired bootstrap resamples whole families 10,000 times with seed 7506 and computes percentile intervals. The family is the resampling unit because the three continuations share a checkpoint. A separate analysis uses only pairs with valid scores. Swap and drop results are summarized separately. Cost reporting uses the provider's token receipts with a conservative peak-price upper bound and reports any unresolved reservations separately.
+The main contrasts for the extension are C+ versus C and R. We also compare R versus A, B versus A, C versus B, and C++ versus C+. A paired bootstrap resamples families 10,000 times with seed 7506. Switch counts and exact unadjusted McNemar tests are available in the result files. The estimates are conditional on the admitted families, and the intervals describe family-level variation for one recorded continuation per method. Results are reported by batch and intervention type. Costs use token receipts and peak-price upper bounds, with unresolved reservations shown separately.
 
 \IfFileExists{generated/results.tex}{\input{generated/results.tex}}{%
 \section{Results}
@@ -105,17 +123,18 @@ The admitted families are conditional on the model reaching a confirmed pre-writ
 
 The intervention arrives immediately before a tool call here. That boundary enables isolation and verification, but users can also interrupt between calls, after a successful write, or during an operation that cannot be atomically deferred. The effect rules are case specific. They detect specified changes in the simulator rather than every semantic violation a user might care about. An official assertion can also differ in coverage from a corresponding human judgment of the revised instructions. The use of the same evaluator across branches controls one source of variation while leaving this benchmark dependence intact.
 
-The study uses one model, one executor, and one continuation per branch. The paired intervals reflect resampling of the admitted families and omit repeated-generation or provider-version variation. The local editor also depends on the original plan containing enough useful structure. A weak initial decomposition can leave too little structure to preserve. These properties limit claims about other models, prompts, or plan representations.
+The study uses one model, one executor, and one continuation per branch. The paired intervals reflect resampling of the admitted families and omit repeated-generation or provider-version variation. C+ changes intent representation, receipt presentation, and plan validation together. The comparisons do not isolate the individual contribution of each. C+ and C++ make independent model calls under the same prompt, so case-level outcome differences can occur even when no request is blocked.
+
+The pre-execution check covers only a few documented operations and requires specific evidence of withdrawal. Actions with unclear request scope proceed. A model that falls back also continues without a signature. These coverage limits constrain the conclusions about enforcement.
 
 The standalone condition provides a difficulty reference. Starting from the initial state changes the amount of work remaining and may remove opportunities to reuse earlier effort. A D success alongside an A/B/C failure flags a possible adaptation issue, while a D failure indicates difficulty under the revised task itself. Causal attribution remains unresolved at the case level.
 
-\IfFileExists{generated/results.tex}{%
-\section{Conclusion}
-In this matched single-model study, local revision had two more strict successes than full replanning over \StudyCases{} families. Native continuation had one more than local revision. The paired intervals include zero, and most formal families were swaps. The trace analysis gives direct evidence of withdrawn state changes that passed terminal checks. Future comparisons can test additional models and intervention boundaries, and record task completion independently of the channel used to deliver answers.}{}
+\IfFileExists{generated/conclusion.tex}{\input{generated/conclusion.tex}}{}
 
 \section*{Reproducibility}
 The study archive includes the source and environment lock, the ordered candidate index, frozen execution settings, the formal manifest, and the analysis scripts. The per-branch results use benchmark identifiers and numeric outcomes. They support recomputation of the reported contrasts without reusing earlier experiment results. Raw simulator state and model trajectories are retained locally because they can contain protected benchmark material and simulated credentials. Results are reproducible from these retained traces. Repeating the inference experiment depends on the provider's model and decoding behavior at the time of execution.
 
 \bibliographystyle{IEEEtran}
+\IEEEtriggeratref{5}
 \bibliography{references}
 \end{document}

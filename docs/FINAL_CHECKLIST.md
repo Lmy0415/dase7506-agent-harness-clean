@@ -16,3 +16,18 @@
 | 作者、课程提交与授权费用 | 通过 | 作者姓名、学号和单位已标为待补，学生确认课程系统的提交时间。峰价上界加未结预留共 1.508799012 美元，低于 10 美元。 |
 
 运行 `python -m pytest -q tests` 可重检核心逻辑。完整复算、论文编译和 Overleaf 上传见 [README](../README.md)。
+
+## Harness V4 最终核对
+
+| 验收项 | 状态 | 证据 |
+| --- | --- | --- |
+| 原批次完整保留与追加题单先冻结 | 通过 | 原 12 个冻结文件哈希匹配，原 32 题题单和结果与 `41cdd22` 一致。追加题单覆盖 8 个新家族，四组 32/32 条齐全。两批无交集。 |
+| 试跑隔离、失败记录及冻结 | 通过 | 8 个 pilot 家族与正式集无交集。首轮 24 条，确认 16 条。正式 763 的网络错误尝试留档，单独恢复后有评分。 |
+| 同起点、同模型、同评分 | 通过 | 40 个 checkpoint 的数据库和对话指纹逐项核对。新增 120 条从对应原起点恢复，每题每分支最多 24 次调用、每次最多 512 输出 token。所有回执为同一 model 标识与服务指纹。 |
+| R、C+、C++ 无裁判输入 | 通过 | 新策略只使用用户消息、可见对话、旧计划和可见工具回执。隔离核验、官方修订全文及评分标注不会进入新策略。8 项离线测试通过，实测 pilot 控制拦截前后状态指纹一致。 |
+| 实测结果与范围披露 | 通过 | [正式分支表](../results/harness_v4/branch_metrics.csv) 280/280 评分。[配对表](../results/harness_v4/paired.csv) 含批次、Swap/Drop 分层和同任务族区间。D 独立参照。[拦截审计](../results/harness_v4/guard_audit.csv) 记录正式 0 次拦截，误拦率无可判定分母。 |
+| 案例和中文说明 | 通过 | [案例索引](../results/harness_v4/case_index.csv) 对应 3 条正式轨迹和 1 条独立 pilot 控制。[中文说明](PROJECT_WALKTHROUGH_ZH.md) 逐题解释结果及其局限。 |
+| IEEE 论文、结果和 ZIP | 通过 | [LaTeX](../paper/main.tex)、[PDF](../paper/report.pdf)、[Overleaf ZIP](../deliverables/overleaf_project.zip)。ZIP 的 8 个成员实际解包编译，逐页查看 6 页 PDF，表格与脱敏数据重建一致。 |
+| 费用和作者信息 | 通过 | [累计账本汇总](../results/harness_v4/budget.json) 含 4,062 条回执，加未结预留占用上界 2.770144776 美元，低于原 10 美元。作者姓名、学号及单位仍留给学生填写。 |
+
+远端交付使用现有 [GitHub 仓库](https://github.com/Lmy0415/dase7506-agent-harness-clean)。提交前检查远端为 Private，并从 GitHub 核对主分支的提交。

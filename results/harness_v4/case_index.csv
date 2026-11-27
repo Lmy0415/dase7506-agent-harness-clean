@@ -1,0 +1,5 @@
+intervention_id,cohort,observation,reference
+307,original,Local editing strictly succeeds while C+ commits a withdrawn supervisor answer,artifacts/raw/harness_v4/v4_formal/case_307/C+.json
+309,original,C+ score improves over C and R after falling back to native continuation,artifacts/raw/harness_v4/v4_formal/case_309/C+.json
+109,original,Final-state passes coexist with a committed withdrawn supervisor answer,artifacts/raw/harness_v4/v4_formal/case_109/C+.json
+750,pilot_guard_control,Replay blocks the withdrawn draft send and leaves the simulator state unchanged,artifacts/raw/harness_v4/guard_pilot_control.json

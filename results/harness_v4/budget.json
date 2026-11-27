@@ -1,0 +1,83 @@
+{
+  "cumulative": {
+    "total_peak_nano_usd": 1824583176,
+    "outstanding_reservations_nano_usd": 945561600,
+    "settled_model_calls": 4062,
+    "scheduled_charge_estimate_nano_usd": 912291588,
+    "known_offpeak_calls": 4062
+  },
+  "v4_calls": {
+    "v4_pilot": {
+      "R": {
+        "calls": 33,
+        "input_tokens": 233920,
+        "output_tokens": 2563,
+        "peak_nano_usd": 9277200,
+        "scheduled_nano_usd": 4638600,
+        "known_offpeak_calls": 33
+      },
+      "C+": {
+        "calls": 44,
+        "input_tokens": 382419,
+        "output_tokens": 4932,
+        "peak_nano_usd": 29348868,
+        "scheduled_nano_usd": 14674434,
+        "known_offpeak_calls": 44
+      },
+      "C++": {
+        "calls": 44,
+        "input_tokens": 364329,
+        "output_tokens": 4901,
+        "peak_nano_usd": 17750652,
+        "scheduled_nano_usd": 8875326,
+        "known_offpeak_calls": 44
+      }
+    },
+    "v4_confirmation": {
+      "R": {},
+      "C+": {
+        "calls": 44,
+        "input_tokens": 367895,
+        "output_tokens": 4381,
+        "peak_nano_usd": 30389220,
+        "scheduled_nano_usd": 15194610,
+        "known_offpeak_calls": 44
+      },
+      "C++": {
+        "calls": 40,
+        "input_tokens": 334737,
+        "output_tokens": 4445,
+        "peak_nano_usd": 27143322,
+        "scheduled_nano_usd": 13571661,
+        "known_offpeak_calls": 40
+      }
+    },
+    "v4_formal": {
+      "R": {
+        "calls": 249,
+        "input_tokens": 3278585,
+        "output_tokens": 32303,
+        "peak_nano_usd": 92678172,
+        "scheduled_nano_usd": 46339086,
+        "known_offpeak_calls": 249
+      },
+      "C+": {
+        "calls": 259,
+        "input_tokens": 3483970,
+        "output_tokens": 34774,
+        "peak_nano_usd": 169904694,
+        "scheduled_nano_usd": 84952347,
+        "known_offpeak_calls": 259
+      },
+      "C++": {
+        "calls": 245,
+        "input_tokens": 3361470,
+        "output_tokens": 34203,
+        "peak_nano_usd": 172809528,
+        "scheduled_nano_usd": 86404764,
+        "known_offpeak_calls": 245,
+        "unsettled_or_rejected_calls": 1
+      }
+    }
+  }
+}

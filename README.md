@@ -1,6 +1,6 @@
 # DASE7506 Final Project
 
-This project studies how an LLM agent revises an in-progress plan when the user changes the goal. The protocol compares three continuation strategies from matched AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. See [PLAN.md](PLAN.md) for the experiment protocol and [PROGRESS.md](PROGRESS.md) for observed results.
+This project studies how an LLM agent revises an in-progress task when the user changes the goal. Six continuation strategies share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. The [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), and [progress log](PROGRESS.md) describe the two rounds of the study.
 
 ## Local setup
 
@@ -78,14 +78,31 @@ The two freeze commands run once for this protocol. Screening and execution resu
 - [Compiled IEEE paper](paper/report.pdf)
 - [Overleaf ZIP](deliverables/overleaf_project.zip)
 - [Chinese walkthrough](docs/PROJECT_WALKTHROUGH_ZH.md) and [verification checklist](docs/FINAL_CHECKLIST.md)
-- [Formal per-branch metrics](results/branch_metrics.csv), [family-paired contrasts](results/paired.csv), and [costs](results/cost_breakdown.csv)
+- [V4 branch metrics](results/harness_v4/branch_metrics.csv), [paired contrasts](results/harness_v4/paired.csv), [guard audit](results/harness_v4/guard_audit.csv), and [cumulative costs](results/harness_v4/budget.json)
+- [Original 32-family results](results/branch_metrics.csv), [eight-family expansion](results/expansion_v3/branch_metrics.csv), and [V4 freeze](protocol/harness_v4_manifest.json)
 
-The local analysis and build can run from the saved evidence without any model calls.
+### Reproduce the V4 results
+
+The V4 branches restore the 40 admitted checkpoints from the original and expansion batches. R consolidates the latest instruction. C+ separates current intent, visible execution receipts, and the edited plan. C++ adds a narrow pre-execution check. Source data and checkpoint contents stay local. The exported CSVs contain identifiers, outcomes, and cost fields. Use the following to resume the paid runs in a workspace with their original artifacts.
 
 ```bash
-.venv/bin/python -m src.analyze
-.venv/bin/python scripts/audit_retention.py
-.venv/bin/python scripts/render_tables.py
+.venv/bin/python -m src.expansion all
+.venv/bin/python -m src.harness_v4 formal
+```
+
+The expansion batch freezes its manifest after screening and before executing any suffix. The V4 configuration was frozen after a pilot and one confirmation for C+ and C++. The checked-in manifests cannot substitute for missing checkpoint databases. To reproduce on new checkpoints, create a new version of the batch, rerun all matched arms, and preserve these inputs and results. All paid phases share the original cumulative USD 10 limit.
+
+In the original workspace, rebuild V4 tables offline from raw traces and the cost ledger.
+
+```bash
+.venv/bin/python -m src.harness_report
+.venv/bin/python -m scripts.check_intent_guard
+```
+
+The checked-in tables are sufficient to regenerate the final PDF and Overleaf archive without a model call.
+
+```bash
+.venv/bin/python -m scripts.render_v4
 .venv/bin/python scripts/build_paper.py
 ```
 
