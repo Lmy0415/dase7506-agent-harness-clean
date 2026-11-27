@@ -1,0 +1,27 @@
+{
+  "appworld_jsonl_sha256": "4212365f457fda19dbb642888990e1dff2c63bb4a3724998d3ae2362a588a4c1",
+  "diagnostic_families": [
+    "31dc501",
+    "771d8fc"
+  ],
+  "family_counts": {
+    "formal": {
+      "Drop": 41,
+      "Swap": 40
+    },
+    "pilot": {
+      "Drop": 8,
+      "Swap": 8
+    }
+  },
+  "indexed_variants": 282,
+  "row_counts": {
+    "candidate_variant": 485,
+    "diagnostic_family": 8,
+    "official_skip": 109,
+    "out_of_scope": 595
+  },
+  "seed": 7506,
+  "unassigned_stratum_variants": 203,
+  "upstream_commit": "7fe53126b93e8d3ef7e28bafbf8db6c6060e679e"
+}

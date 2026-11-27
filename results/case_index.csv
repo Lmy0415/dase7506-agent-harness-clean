@@ -1,0 +1,5 @@
+intervention_id,reason,prefix_trace,branch_trace_paths
+772,reuse of committed slide moves,artifacts/raw/formal/formal_772/prefix.json,artifacts/raw/formal/formal_772/{A|B|C|D}.json
+109,terminal pass with a withdrawn answer committed,artifacts/raw/formal/formal_109/prefix.json,artifacts/raw/formal/formal_109/{A|B|C|D}.json
+316,paired strict difference and completion assertion interaction,artifacts/raw/formal/formal_316/prefix.json,artifacts/raw/formal/formal_316/{A|B|C|D}.json
+763,revised instruction and evaluator operation mismatch,artifacts/raw/formal/formal_763/prefix.json,artifacts/raw/formal/formal_763/{A|B|C|D}.json

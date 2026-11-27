@@ -1,0 +1,7 @@
+{
+  "total_peak_nano_usd": 878424612,
+  "outstanding_reservations_nano_usd": 630374400,
+  "settled_model_calls": 2260,
+  "scheduled_charge_estimate_nano_usd": 439212306,
+  "known_offpeak_calls": 2260
+}

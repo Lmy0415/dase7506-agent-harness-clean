@@ -1,0 +1,17 @@
+strategy,outcome,branches
+A,branch_contained_rejected_tool,9
+A,model_call_limit,1
+A,model_stopped_without_finish,8
+A,simulator_finish,23
+B,branch_contained_rejected_tool,8
+B,model_call_limit,1
+B,model_stopped_without_finish,6
+B,simulator_finish,25
+C,branch_contained_rejected_tool,9
+C,model_call_limit,1
+C,model_stopped_without_finish,7
+C,planning_fallback,1
+C,simulator_finish,24
+D,branch_contained_rejected_tool,17
+D,model_call_limit,2
+D,simulator_finish,30

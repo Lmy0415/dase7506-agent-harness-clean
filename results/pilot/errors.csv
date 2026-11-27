@@ -1,0 +1,12 @@
+strategy,outcome,branches
+A,branch_contained_rejected_tool,1
+A,model_stopped_without_finish,2
+A,simulator_finish,6
+B,branch_contained_rejected_tool,1
+B,model_stopped_without_finish,1
+B,simulator_finish,7
+C,branch_contained_rejected_tool,2
+C,model_stopped_without_finish,3
+C,simulator_finish,5
+D,branch_contained_rejected_tool,3
+D,simulator_finish,8

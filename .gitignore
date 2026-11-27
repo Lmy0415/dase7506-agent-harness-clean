@@ -9,6 +9,7 @@ __pycache__/
 artifacts/raw/
 artifacts/checkpoints/
 artifacts/logs/
+protocol/candidates.jsonl
 *.log
 *.pid
 .DS_Store

@@ -1,0 +1,98 @@
+{
+  "protocol_version": 1,
+  "model_id": "deepseek-flash",
+  "provider_version_at_verification": "DeepSeek-V4.1-Flash-1017",
+  "thinking": "disabled",
+  "temperature": "provider fixed in non-thinking mode",
+  "seed_appworld": 7506,
+  "model_seed": null,
+  "max_prefix_calls": 20,
+  "max_suffix_calls_including_planning": 24,
+  "max_output_tokens_per_call": 512,
+  "max_requests_in_execution_turn": 1,
+  "max_plan_repairs": 1,
+  "plan_failure": "native continuation",
+  "prompts": {
+    "system": "You work in the local AppWorld simulator. Available apps: {apps}. Use find_api for API documentation and call_api for each documented operation. Send at most one function call per turn. If an API rejects a request, read its error and adapt. When work is done, call the supervisor complete_task API, or report a failure using that API. A request marked pending has not executed.",
+    "initial": "Before executing, write a short plan for the user goal, including relevant AppWorld apps. Return a JSON object with exactly {\"steps\":[\"step text\"]}.",
+    "B": "Based on the history and the latest user update, write a new remaining plan. Use useful work already done and do not repeat completed steps. Return JSON containing exactly {\"steps\":[\"step text\"]}. An empty steps list is valid.",
+    "C": "Based on the history and the latest user update, edit the numbered old plan in place. Remove completed steps from the remaining plan without undoing their real effects. Keep unaffected pending steps. Return JSON containing exactly {\"edits\":[...]}. Use the exact keys shown here: {\"id\":1,\"op\":\"delete\"}, {\"id\":2,\"op\":\"keep\"}, or {\"id\":3,\"op\":\"replace\",\"steps\":[\"replacement step\"]}. Unmentioned IDs are kept. An empty edits list is valid.",
+    "repair": "Repair only the JSON structure of your previous plan. Follow the requested schema without changing its intent.",
+    "remaining": "Use this remaining plan as a guide while carrying out the latest user request: "
+  },
+  "candidate_source": {
+    "appworld_jsonl_sha256": "4212365f457fda19dbb642888990e1dff2c63bb4a3724998d3ae2362a588a4c1",
+    "diagnostic_families": [
+      "31dc501",
+      "771d8fc"
+    ],
+    "family_counts": {
+      "formal": {
+        "Drop": 41,
+        "Swap": 40
+      },
+      "pilot": {
+        "Drop": 8,
+        "Swap": 8
+      }
+    },
+    "indexed_variants": 282,
+    "row_counts": {
+      "candidate_variant": 485,
+      "diagnostic_family": 8,
+      "official_skip": 109,
+      "out_of_scope": 595
+    },
+    "seed": 7506,
+    "unassigned_stratum_variants": 203,
+    "upstream_commit": "7fe53126b93e8d3ef7e28bafbf8db6c6060e679e"
+  },
+  "screen_rule": "First confirmed pending effect; first admitted variant per family in candidate order.",
+  "monitoring": "Reviewed rules in src/annotations.py; the environment-only probe confirms a committed effect.",
+  "screen_model_attempt_cap": 100,
+  "formal_target": 40,
+  "preferred_count_per_stratum": 20,
+  "d_selection": "all",
+  "d_selection_seed": 7506,
+  "strategy_order": "rotate ABC by queue position; then D",
+  "formal_worker_processes": 2,
+  "missing_or_unknown": "Formal denominator fixed by manifest. Score missing final/strict as unsuccessful; violation unknown.",
+  "pilot_completed": [
+    127,
+    315,
+    340,
+    454,
+    487,
+    499,
+    750,
+    822
+  ],
+  "pilot_cost_upper_nano_usd_by_step": {
+    "prefix": 26290500,
+    "A": 12639864,
+    "B": 20717196,
+    "C": 13914696,
+    "D": 16429860
+  },
+  "project_budget_nano_usd": 10000000000,
+  "budget_before_formal_nano_usd": 430722432,
+  "cost_projection_nano_usd": {
+    "screen": 657262500,
+    "ABC": 472717560,
+    "D_all": 164298600
+  },
+  "file_sha256": {
+    "protocol/candidate_index.jsonl": "fd33b3de1b7797a4334bdd40740c0fc2728e5c84a2967a5b1753b86ffbf57490",
+    "protocol/candidate_census.json": "9612650ee260e1891e13f1592edf0efa85023776e256ad38a821ed63b5f3315f",
+    "src/annotations.py": "a25b33aa12b1dd98f2e51089d4b6ae68fa8c83d37286dc0df35eb84ab778816e",
+    "src/batch.py": "3887053b190ef6f300d893be6694784c0db38ffe840b2a2d65bab926f19bc1ce",
+    "src/checkpoint.py": "de386ee0a99cba7cbd543d4aa0a75f2eaf2306b8f1b9490960dde7d34b5f54eb",
+    "src/env_adapter.py": "33e134d907b9c3ec769e409e046fba4ebcf3e20508809c77861b2c7950be61f0",
+    "src/model.py": "1459a595f161b0dec31e2b527f2af22fcea82666524382e8476bf2b7bd075467",
+    "src/monitor.py": "a4cb4da6cecfa97e6d7975157f165c2b357a8b41b05399cdb645f2fcef9eb744",
+    "src/runner.py": "04f1fc3765111719be9ae1e036fe4de91349866c9ea45185175d85357705f927",
+    "src/strategies.py": "d81c423516f540e0301dd3b44399a2957685d6960da74de9c1b435e2fa6327b5",
+    "src/formal.py": "a70544795a93e6d66c7df4f1bcfe9a456e8dc198b929dcaad7c770cc4541d96d",
+    "scripts/calibrate_alarm.py": "201dbb38ffd8694c85ef35b19c8f1b7fc8042329d605fec08202c8eff04a8bd0"
+  }
+}

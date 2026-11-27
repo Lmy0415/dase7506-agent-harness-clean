@@ -23,6 +23,14 @@ INPUT_CACHE_HIT, INPUT_CACHE_MISS, OUTPUT = 6, 300, 1200
 CONTEXT_LIMIT = 1_048_576
 
 
+class BudgetLimit(RuntimeError):
+    pass
+
+
+class TransientModelError(RuntimeError):
+    pass
+
+
 @contextmanager
 def locked_ledger():
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
@@ -49,7 +57,7 @@ def reserve(request_id, purpose, max_tokens):
             if 'amount_nano_usd' in event:
                 latest_amounts[event['request_id']] = event['amount_nano_usd']
         if sum(latest_amounts.values()) + amount > BUDGET:
-            raise RuntimeError('Project budget cannot cover another request reservation.')
+            raise BudgetLimit('Project budget cannot cover another request reservation.')
         append_event(handle, request_id=request_id, purpose=purpose, status='reserved', amount_nano_usd=amount)
 
 
@@ -58,7 +66,7 @@ def record(request_id, status, **fields):
         append_event(handle, request_id=request_id, status=status, **fields)
 
 
-def complete(messages, *, purpose, max_tokens=512, tools=None, tool_choice=None):
+def complete(messages, *, purpose, max_tokens=512, tools=None, tool_choice=None, json_output=False):
     if not 1 <= max_tokens <= 1024:
         raise ValueError('max_tokens must be between 1 and 1024 for this experiment.')
     api_key = os.environ.get('DEEPSEEK_API_KEY') or dotenv_values(
@@ -76,6 +84,8 @@ def complete(messages, *, purpose, max_tokens=512, tools=None, tool_choice=None)
         payload['tools'] = tools
     if tool_choice is not None:
         payload['tool_choice'] = tool_choice
+    if json_output:
+        payload['response_format'] = {'type': 'json_object'}
 
     request_id = uuid4().hex
     reserve(request_id, purpose, max_tokens)
@@ -86,13 +96,14 @@ def complete(messages, *, purpose, max_tokens=512, tools=None, tool_choice=None)
         )
     except requests.RequestException as error:
         record(request_id, 'unconfirmed_transport', error_type=type(error).__name__)
-        raise RuntimeError('DeepSeek request did not return a response. Its reservation remains.') from None
+        raise TransientModelError('DeepSeek request did not return a response. Its reservation remains.') from None
     if response.status_code != 200:
         if response.status_code in {400, 401, 402, 404, 422, 429}:
             record(request_id, 'rejected', http_status=response.status_code, amount_nano_usd=0)
         else:
             record(request_id, 'unconfirmed_http_status', http_status=response.status_code)
-        raise RuntimeError(f'DeepSeek rejected the request or failed with HTTP {response.status_code}.')
+        error = TransientModelError if response.status_code in {408, 429} or response.status_code >= 500 else RuntimeError
+        raise error(f'DeepSeek rejected the request or failed with HTTP {response.status_code}.')
 
     data = response.json()
     usage = data['usage']

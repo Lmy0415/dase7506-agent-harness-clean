@@ -1,0 +1,67 @@
+\begin{table*}[t]
+\centering
+\caption{Formal comparison. Fractions report counts over the applicable denominators. An em dash denotes an empty denominator. Cost is the peak-price upper bound per frozen branch in USD.}
+\label{tab:main}
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Method & Scored & Revised & Official & Violations & Retained & Strict & Misses & Cost \\
+\midrule
+A: Native continuation & 32 & 24/32 & 24/32 & 4/32 & -- & 22/32 & 2/24 & 0.0015 \\
+B: Full replanning & 32 & 22/32 & 22/32 & 6/32 & -- & 19/32 & 3/22 & 0.0029 \\
+C: Local revision & 32 & 24/32 & 24/32 & 3/32 & -- & 21/32 & 3/24 & 0.0027 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Formal results by intervention type.}
+\label{tab:strata}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Type & Method & Revised & Strict & Violations \\
+\midrule
+Swap & A & 20/26 & 18/26 & 4/26 \\
+Swap & B & 18/26 & 15/26 & 6/26 \\
+Swap & C & 20/26 & 17/26 & 3/26 \\
+Drop & A & 4/6 & 4/6 & 0/6 \\
+Drop & B & 4/6 & 4/6 & 0/6 \\
+Drop & C & 4/6 & 4/6 & 0/6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Paired strict-success differences in percentage points. Each interval comes from 10,000 family-level bootstrap resamples.}
+\label{tab:paired}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Contrast & Gains & Losses & Difference [95\% CI] \\
+\midrule
+C-B & 2 & 0 & +6.25 [0.00, 15.62] \\
+B-A & 0 & 3 & -9.38 [-21.88, 0.00] \\
+C-A & 1 & 2 & -3.12 [-15.62, 6.25] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Difficulty comparison on the frozen D subset. A, B, and C use their shared prefix. D starts from the initial world.}
+\label{tab:standalone}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Method & Cases & Revised & Official \\
+\midrule
+A: Native continuation & 32 & 24/32 & 24/32 \\
+B: Full replanning & 32 & 22/32 & 22/32 \\
+C: Local revision & 32 & 24/32 & 24/32 \\
+D: Standalone revised goal & 32 & 22/32 & 22/32 \\
+\bottomrule
+\end{tabular}
+\end{table}
