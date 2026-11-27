@@ -12,7 +12,7 @@
 | 主要结果、分层、D、成本、案例和局限 | 通过 | A/B/C 严格成功 22/32、19/32、21/32，D 修订终态 22/32。论文报告 26 Swap、6 Drop、三个对比区间和评分语义差异。六条部分 Drop 的保留要求有额外的事后重叠断言审计，正式分数保持冻结。 |
 | 中文阶段反馈及白话说明 | 通过 | [阶段反馈](../PROGRESS.md) 与 [白话说明](PROJECT_WALKTHROUGH_ZH.md) 可追溯到题单、案例和结果。 |
 | 英文 IEEE LaTeX、真实引用、PDF 与结果一致 | 通过 | [LaTeX 正文](../paper/main.tex)、[参考文献](../paper/references.bib) 和 [5 页 PDF](../paper/report.pdf)。逐页检查标题、流程图、统计表和参考文献。四个核心测试通过。 |
-| Overleaf ZIP 解压编译、私有仓库 | 本地交付已查验 | [ZIP](../deliverables/overleaf_project.zip) 含 6 个源文件，根目录为 `main.tex`，实际从解压内容编译。发布目标为 [新私有 GitHub 仓库](https://github.com/Lmy0415/dase7506-agent-harness-clean) 的 `main`。 |
+| Overleaf ZIP 解压编译、私有仓库 | 通过 | [ZIP](../deliverables/overleaf_project.zip) 含 6 个源文件，根目录为 `main.tex`，实际从解压内容编译。已核验 [新私有 GitHub 仓库](https://github.com/Lmy0415/dase7506-agent-harness-clean) 的 `main` 收到交付提交 `4acde9ff8098`。 |
 | 作者、课程提交与授权费用 | 通过 | 作者姓名、学号和单位已标为待补，学生确认课程系统的提交时间。峰价上界加未结预留共 1.508799012 美元，低于 10 美元。 |
 
 运行 `python -m pytest -q tests` 可重检核心逻辑。完整复算、论文编译和 Overleaf 上传见 [README](../README.md)。
