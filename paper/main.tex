@@ -18,11 +18,17 @@ LLM agents, goal revision, stateful tool use, human escalation
 \end{IEEEkeywords}
 
 \section{Introduction}
-A user asks an assistant to pay a grocery bill and text the recipient when it is done. After the payment, the user withdraws the text request. If the text is still pending, the assistant can withhold it and preserve the payment. If the text has already gone out, withholding it is impossible. The assistant can disclose the send and ask whether a follow-up is authorized. Both situations have the same revised instruction. They differ in which actions remain possible and appropriate.
+When users revise a task during tool use, an agent must decide what to keep, cancel, or do next. In 405 historical AppWorld branches spanning 49 distinct task families, we compared plan rewriting, local edits, and explicit intent and execution state on InterventionBench revisions~\cite{lee2026intervention,trivedi2024appworld}. On the 40-family historical cohort, more tolerant state validation reduced complete fallback from 19 to 0 branches. The original and tolerant intent-aware methods each achieved 22 strict successes. A narrow guard blocked a withdrawn send in a simulator control and made no blocks in 223 formal checks. Better state representation made the continuation more reliable to run, and strict task success remained unchanged in the paired comparison.
 
-Task and plan representations help an agent reason about revisions, but the correct response can depend on an external effect that has already occurred. Our first study compares continuation methods on checkpoint-matched InterventionBench tasks in AppWorld~\cite{lee2026intervention,trivedi2024appworld}. Making an intent-aware representation more tolerant reduces complete fallback, yet does not improve strict task success in the historical cohort. A deterministic guard can block a known withdrawn send in a control, while opportunities to intervene in task execution remain limited. These results motivate examining the disposition of a particular committed action and the scope of work that can safely resume.
+This finding raises a question about the timing of a revision. How does the appropriate response change when the same request has already committed? Consider a user who asks an assistant to pay a grocery bill and send a confirmation text, then withdraws the text request. Before the send, the assistant should withhold it and preserve the payment. After the send, the assistant should disclose what happened and seek authorization for a follow-up. The user instruction is identical in both cases. The committed effect changes which actions are appropriate.
 
-We introduce a paired evaluation around one real simulator submission. For each family, the agent sees the same user revision and a different verified receipt depending on whether the request has committed. We compare native continuation, a full procedural prompt, and a controller called PACT, short for Pause, Assess, Classify, and Triage. PACT turns an assessment into a program-controlled queue and checks the scope of writes before submission. The evaluation measures disposition, reporting, authorization, and independent progress. This design lets us compare procedural instructions with an executable implementation under the same model and tool budget.
+We study this distinction with a matched simulator design and a controller called PACT, short for Pause, Assess, Classify, and Triage. We compare PACT with native continuation and a full procedure prompt using the same model and tool budget. PACT uses a program-controlled queue and checks proposed writes before they reach the adapter. The study makes three contributions.
+
+\begin{enumerate}
+\item \textbf{Historical harness evidence.} We compare plan and state representations and separate structural fallback, strict task success, and guard intervention.
+\item \textbf{Commit-Boundary Paired Evaluation.} We hold the prefix and revision fixed and vary whether one verified simulator write has occurred. The 72 branches reuse 12 of the 49 historical task families.
+\item \textbf{PACT and Appropriate Resolution Rate (ARR).} We implement commit-aware triage and evaluate it with criteria for reporting, authorization, retention, and progress on independent work.
+\end{enumerate}
 
 \section{Related Work}
 \textbf{Revisions during execution.}
@@ -32,7 +38,7 @@ InterventionBench varies the operation and goal component modified by a user int
 AdaPlanner adapts self-generated plans to execution feedback~\cite{sun2023adaplanner}. IntentFlux studies superseded requirements and uses explicit active state~\cite{zhang2026intentflux}. Zhang et al. compare task-state display, direction, and enforcement, with enforceability depending on mapping requests to state~\cite{zhang2026taskstate}. GuardAgent translates natural-language safety constraints into executable checks~\cite{xiang2025guardagent}. ToolSandbox evaluates stateful trajectories with milestones~\cite{lu2025toolsandbox}. We compare explicit planning representations and a program-controlled authorization queue in a single application simulator. PACT's enforcement depends on validated task interpretation and a documented request mapping.
 
 \textbf{Reconsideration and escalation.}
-Intention reconsideration has long been studied in belief--desire--intention agents~\cite{schut2004intention}. Revision Absorber relates adaptation cost to reversibility and rolls back a conflicting suffix when the available operations allow it~\cite{zhai2026revisable}. Our controller treats authorization as a separate condition for applying an inverse. AgentAbstain pairs tasks where acting or withholding is appropriate~\cite{liu2026abstain}. ImpasseBench evaluates whether coding agents escalate when observable evidence indicates a blocker~\cite{chen2026impasse}. Here a single session can contain both an action awaiting a user decision and independent actions that remain permitted.
+Belief--desire--intention (BDI) architectures formalize an agent's commitments and when it should reconsider them~\cite{rao1995bdi,schut2004intention}. Revision Absorber relates adaptation cost to reversibility and rolls back a conflicting suffix when available operations allow it~\cite{zhai2026revisable}. PACT requires authorization to apply an inverse. AgentAbstain pairs tasks where acting or withholding is appropriate~\cite{liu2026abstain}. ImpasseBench evaluates escalation when observable evidence indicates a blocker~\cite{chen2026impasse}. Our evaluation also tests whether independent work continues while a user decision is pending.
 
 \section{Study I: Acting on a Revised Goal}
 \subsection{Shared checkpoints and continuation methods}
@@ -40,7 +46,7 @@ We use AppWorld \texttt{0.1.3.post1}, data version \texttt{0.1.0}, and Intervent
 
 The historical comparisons use native continuation (A), a new remaining plan (B), a sparse edit to the old plan (C), consolidation of the user instructions (R), an explicit intent and evidence representation with local edits (C+), and C+ with a narrow pre-execution guard (C++). C5 normalizes step-number representations, combines consistent receipt references, and validates intent, evidence, and edits separately. Unverifiable evidence leaves the corresponding step unresolved. G5 shares the exact initial C5 state and uses a deterministic rule when the visible update and receipt identify a withdrawn operation. A separate standalone condition (D) starts from the original simulator state with the revised goal and provides a difficulty reference.
 
-The original screen attempted 72 variants and admitted 32 families. The same-protocol expansion screened 29 of 35 queued variants and admitted eight more families. Together the 40 families contain 29 swaps and 11 partial drops. An unused-family confirmation screened 35 variants and admitted nine more families. The studies contain 405 historical scored branches. V5 comparisons on the 40 previously examined families are exploratory. The independently selected nine-family confirmation is reported separately.
+The original screen attempted 72 variants and admitted 32 families. The same-protocol expansion screened 29 of 35 queued variants and admitted eight more families. Together the 40 families contain 29 swaps and 11 partial drops. An unused-family confirmation screened 35 variants and admitted nine more families. Study I thus contains 405 scored branches across 49 distinct families. Comparisons on the 40 previously examined families are exploratory. We report the nine-family confirmation separately.
 
 \subsection{Scoring and analysis}
 Revised-final success checks the final world against the updated goal. Strict success additionally requires all independently applicable retained checks and no observed post-revision withdrawn effect. Monitoring covers case-specific operations, including \texttt{supervisor} answer submissions. We record application effects separately. The official pass is available separately and can also depend on failure of the original goal. No independent retained checks are applicable in the historical formal sample. We report D's revised-final success because it starts without interruption history.
@@ -52,7 +58,7 @@ All continuations use DeepSeek Flash in non-thinking mode with a 24-call limit t
 
 \section{Study II: Commit-Boundary Triage}
 \subsection{Paired evaluation}
-We reused twelve historical task families, selecting one intervention per family in prespecified operation categories and ascending family-ID order. Selection used the original instructions, update, checkpoint and isolated-effect evidence. It used no old method scores. Eight families retain the official update and four have controlled user instructions. The controlled tasks test explicit permission for an exact inverse, independent work with priorities, and a still-authorized order. Two different pilot families were used for engineering checks. The twelve formal families overlap the historical study and contribute no new independent sample to Study I.
+We reused 12 of the 49 historical task families, selecting one intervention per family in prespecified operation categories and ascending family-ID order. Selection used the instructions, checkpoint, and isolated-effect evidence. Historical method scores played no role. Eight families retain the official update and four have controlled user instructions. The controls cover exact repair authorization, independent work, and a still-authorized order. Explicit priority and dependency are tested in one formal family. Two separate pilot families were used for engineering checks. Two boundaries and three methods per formal family give 72 scored PACT-study branches and leave the total at 49 distinct formal families.
 
 For each family, PRE restores the original checkpoint with the write pending. POST restores a separate copy and executes the same pending request exactly once through the AppWorld adapter under the old instruction. An independent predicate verifies the resulting state change. We replace the pending tool response at the original call ID with its real response and save the updated database, clock, random state, adapter state, and visible context. The latest user message is identical within each pair. There are no intervening model calls. Terminal proposals and commitments without a verifiable effect are ineligible. Each method independently restores the matching PRE or POST snapshot.
 
@@ -75,17 +81,28 @@ $\downarrow$ \\
 \end{figure}
 
 \subsection{Matched execution conditions}
-Native A receives the shared history and update. Procedure P also receives explicit instructions to pause, inspect the old and new user requests and real receipts, classify affected work, report conflict, await authorization when necessary, and resume independent tasks in the requested order. PACT receives the same procedure and applies it through program state. All three have the same AppWorld tools, model and 24-call limit. Each may report a conflict, request a decision, and end the session using the same conversation tools. The simulated user does not reply. The original completion API is present in every arm. Branch order rotates within families. We include planning, repair, and retried transport calls in the 24-call cap.
+Native A receives the shared history and update. Procedure Prompt P also receives explicit instructions to inspect the old and new requests and their receipts, classify affected work, report conflicts, wait for authorization when needed, and resume independent tasks in the requested order. PACT receives the same procedure and adds an assessment call and a controller. All three have the same AppWorld tools, model, and 24-call limit, including planning, repair, and retries. Each can use the same reporting, decision, and completion tools. In PACT, the controller can log reports and ask for decisions automatically after assessment. A and P rely on model-initiated tool calls for these actions. The simulated user never replies. Branch order rotates within families.
 
 \subsection{PACT execution control}
-\textbf{Pause and assess.}
-The runner advances the goal version and does not dispatch pending requests left by the old version. The last visible receipt distinguishes pending from committed. One model call identifies whether the operation was withdrawn or retained and produces concise cards with an API, selectors, a user-text excerpt, priorities, and dependencies. One repair is available for parsing errors. The program assigns stable positions, validates references and declared API parameters, and blocks cyclic or unresolved dependencies. Unusable assessments provide no permission for an affected write.
+Figure~\ref{fig:controller} shows the transition from a pending or committed boundary to the queue. The assessment produces task cards with a documented API, argument selectors, a user-text excerpt, priority, and dependencies. The controller validates the cards and blocks unresolved dependencies and cycles. Explicit priority propagates to prerequisites, and input order breaks ties. Writes must match the selected scope and be grounded in the user text or prior visible responses. A matching receipt can confirm tracked work. Other receipts leave completion unverified. Runtime checks use visible receipts and public API schemas. Offline scoring separately examines saved simulator states.
 
-\textbf{Classify and triage.}
-An uncommitted withdrawal is canceled. A committed effect that remains appropriate is kept. A conflicting effect is reported. If the revised request authorizes a documented inverse and the committed receipt identifies the exact object, the inverse enters the queue. Otherwise the controller logs a decision request, and the affected scope waits. The queue dispatches only authorized work with satisfied dependencies. Explicit priority propagates to prerequisites, and input order breaks ties. A read or documentation lookup can establish facts while the write remains pending.
-
-\textbf{Gate and resume.}
-Before invoking the adapter, the controller compares a candidate write with the selected task, the documented endpoint, and argument values grounded in user text or prior visible responses. A conflicting boundary write, unsupported inverse, unassigned request, or out-of-order effect receives a tool rejection and does not enter AppWorld. Known API-specific response fields confirm the effects PACT can track. Other responses leave completion unverified. Scoring uses simulator snapshots offline, independently of these runtime states. The controller uses public API schemas and visible operation receipts and does not consume private task labels, database observations, or revised evaluator output.
+\begin{figure}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}lp{.79\columnwidth}@{}}
+\toprule
+\textbf{Pause} & Advance the goal version and withhold old pending writes. Read the visible boundary receipt. \\
+\textbf{Assess} & Call the model for intent and task cards. Validate the cards, with at most one repair call. \\
+\textbf{Classify} & If withdrawn and pending, cancel. If retained, mark pending work ready and committed work kept. If uncertain, withhold the affected write. \\
+& If withdrawn and committed, log a conflict report automatically. Mark an exact, explicitly authorized inverse ready for repair. Otherwise ask automatically and mark the affected task as waiting. \\
+\textbf{Triage} & Select a ready repair or authorized work whose dependencies are satisfied, using priority and input order. Allow safe reads. Reject writes that fail the scope or argument checks before the adapter. Update status from the receipt. \\
+\bottomrule
+\end{tabular}
+\caption{PACT controller pseudocode. Waiting blocks the affected scope and leaves eligible independent tasks in the queue.}
+\label{fig:controller}
+\end{figure}
 
 \subsection{Appropriate Resolution Rate}
 Each family and boundary has a frozen set of necessary conditions. PRE cancellation requires withholding the withdrawn effect and completing any authorized remainder. POST waiting requires a report identifying the committed effect, a decision request grounded in that receipt, preservation of the effect while awaiting the user, and completion of independent work when applicable. Authorized repair requires the exact inverse and verified state. A still-authorized operation stays in effect or may proceed once. Additional conditions cover unauthorized writes, retained work, and explicit priority or dependency. We refer to the fraction satisfying all applicable conditions as Appropriate Resolution Rate (ARR).
@@ -95,7 +112,9 @@ Reports and questions are checked against the actual receipt and scoped identifi
 \input{generated/case_analysis.tex}
 
 \section{Discussion and Limitations}
-Checkpoint eligibility favors tasks with discrete and observable effects. The paired design tests a boundary effect under a known tool proposal. It does not approximate concurrent network requests that may already be in flight. A simulated POST effect can have a different cost or social meaning outside AppWorld. The natural cases come from historical families observed during method development, so the PACT evaluation is exploratory. Controlled cases contain researcher-authored instructions, one model service contributes all continuations, and the user never answers an escalation. With twelve families and one sampled trajectory per cell, intervals capture family variability within this sample. They do not capture repeat-generation or provider drift.
+Checkpoint eligibility favors tasks with discrete and observable effects. Committed effects in AppWorld can differ from real-world effects, and the design covers a known tool proposal without concurrent requests in flight. The PACT study is exploratory because it reuses 12 historical families and includes researcher-authored controls. One model service contributes all continuations, with one sampled trajectory per cell. Users never answer escalation requests. The intervals reflect variability across the sampled families and omit repeat-generation and provider variation. Priority and dependency were exercised in only one formal family.
+
+The comparison measures complete harnesses. PACT combines a model assessment, automatic reporting and requests for decisions, scheduling, and a write gate. Since those components were evaluated together, the study cannot isolate the contribution of any one component or establish an improvement in the underlying model's reasoning.
 
 The controller's capability depends on the association between task cards and concrete API arguments. Public descriptions and literal selectors support a small set of operations. They cannot resolve every semantic reference or protect against every side effect of a valid call. Broadly defined tasks can be blocked even when authorized, and the completion predicates cover only independently verified changes. A rejected request compatible with an eventual goal can still be premature under the specified queue. We report these candidates separately from verified false blocks. The historical evaluator compatibility analysis is a sensitivity check, and all primary historical values retain their frozen scores.
 
@@ -103,6 +122,11 @@ The controller's capability depends on the association between task cards and co
 
 \section*{Reproducibility}
 The archive includes the dependency lock, frozen manifests, evaluation code, branch-level results, and table generator. Raw trajectories and worlds stay in the original workspace. The same ledger meters all requests. The archived tables rebuild the paper offline.
+
+\noindent\begin{minipage}{\columnwidth}
+\section*{AI Disclosure}
+Generative AI tools, including ChatGPT and OpenAI Codex, contributed to research ideation, literature exploration, experimental design, code implementation and debugging, data analysis, and the drafting and revision of this manuscript. DeepSeek Flash was the language model evaluated in the experiments. The reported results come from recorded model interactions and tool execution in the AppWorld simulator. The authors take responsibility for the final claims, interpretation of the results, and submitted manuscript.
+\end{minipage}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

@@ -54,3 +54,30 @@
 | 独立评分与分层结果 | [分母和指标](../results/pact/summary.csv)、[配对结果](../results/pact/paired.csv)、[通信复核](../results/pact/blind_review.csv)、[引用敏感性](../results/pact/reference_sensitivity.csv)。主分按预冻结评分，独立审计单列。 |
 | 论文与作者信息 | [LaTeX](../paper/main.tex)、[PDF](../paper/report.pdf)、[Overleaf 工程](../deliverables/overleaf_project.zip)、[中文研究说明](PACT_WALKTHROUGH_ZH.md)。作者姓名、学号及单位保留占位。 |
 | 费用与交付 | [费用账本](../results/pact/budget.json) 核对 PACT 占用上界 0.372737148 USD 与项目 4.148227818 USD。通过只读仓库元数据和文件树核对 Private `main`。 |
+
+## 最终论文审稿与本地交付（2026-11-28）
+
+| 验收项 | 本次改动与理由 |
+| --- | --- |
+| 研究问题与样本口径 | 保留原题名。引言从状态校验降低回退但未改善严格成功率的历史发现出发，引出提交状态怎样改变正确处置，再列出三项贡献。全文区分 49 个独立任务族、405 条历史分支和 72 条 PACT 分支。PACT 复用其中 12 个任务族。 |
+| 控制器与实验解释 | 加入 Pause、Assess、Classify、Triage 的单栏伪代码。说明 PACT 可以由程序直接报告并请示，比较涵盖完整系统，未单独测量自动化、门禁或模型推理各自的影响。 |
+| 核心结果图与统计 | 直接读取冻结 [summary.csv](../results/pact/summary.csv) 核对六个分子分母。图中叠放不同形状的重合点，灰度下也能辨认。由逐题数据复算 5 胜、0 负及双侧精确 McNemar (p=0.0625)，同时报告 95% 家族 bootstrap 区间 [16.7, 66.7] 个百分点，说明精确检验未达到 0.05 阈值。保留替代引用敏感性结果 A/P/PACT 为 3/12、3/12、7/12。 |
+| 负面证据与限制 | 保留 POST 独立工作完成率、第 300 题多加椅子的失败、三组 POST 未观测到未经授权补救、优先级仅一个正式家族，以及单模型、小样本和无用户回复。 |
+| 引文 | 用 arXiv v2 核对 ImpasseBench 的六位作者。从该条目移除 Jiasheng Liu，补充 Rao 与 Georgeff 的 BDI 会议文献和 Schut 等的卷期、页码与 DOI。 [arXiv v2](https://arxiv.org/abs/2610.31895v2) · [BDI 会议原文](https://cdn.aaai.org/ICMAS/1995/ICMAS95-042.pdf) · [意图重审期刊记录](https://research.vu.nl/en/publications/the-theory-and-practice-of-intention-reconsideration/) |
+| 论文与附件 | [LaTeX](../paper/main.tex)；[6 页 PDF](../paper/report.pdf)；[Overleaf ZIP](../deliverables/overleaf_project.zip)。ZIP 的 10 个成员与交付源码和图片一致，已从干净目录解包编译。逐页检查双栏和三张图。单独交付 [矢量图](../paper/figures/commitment_arr.pdf)、[600 dpi PNG](../paper/figures/commitment_arr.png) 和 [绘图脚本](../scripts/plot_commitment_arr.py)。 |
+| 冻结与待填 | Harness、评分规则、冻结设置、历史结果和 API 账本一致，本轮模型调用为 0。修订成果在本地，GitHub 可见性保持 Private。作者姓名、学号和单位保留占位，待学生填写。 |
+
+## 最终归档与提交准备（2026-11-28）
+
+**项目状态：研究与工程交付完成，等待学生填写作者信息及正式课程提交。**
+
+| 项目 | 最终验收证据 |
+| --- | --- |
+| AI Disclosure | [课程公告](../COURSE_REQUIREMENTS.md)未列出专用模板。英文声明位于 Conclusion 之后、References 之前，列明 ChatGPT 和 OpenAI Codex 对研究设计、实现、分析和写作的贡献，说明 DeepSeek Flash 为实际受评估的模型。 [论文源码](../paper/main.tex) |
+| 正式样本与分支 | 49 个独立正式任务族。405 条历史分支加上 72 条 PACT 分支，共 477 条。PACT 的 12 个任务族均从历史样本中复用。 [历史逐分支记录](../results/harness_v5/branch_metrics.csv) · [PACT 逐分支记录](../results/pact/branch_metrics.csv) |
+| 测试及费用 | 已有 27 项测试通过记录。累计 API 预算占用上界 4.148227818 USD，授权总上限 10 USD。归档没有新增模型调用。 [费用账本](../results/pact/budget.json) |
+| 主要研究发现与局限 | 容错减少了结构回退，严格成功率持平。PACT 在本样本 POST 的 ARR 高于流程提示基线，同时完成的独立工作更少。样本复用、单模型和无用户回复限制了结论。 [中文项目说明](PROJECT_WALKTHROUGH_ZH.md) · [中文 PACT 研究说明](PACT_WALKTHROUGH_ZH.md) |
+| 论文及 Overleaf | [6 页 PDF](../paper/report.pdf) · [LaTeX](../paper/main.tex) · [Overleaf ZIP](../deliverables/overleaf_project.zip)。10 个 ZIP 成员含完整源码、参考文献、生成表格与矢量图，从干净目录解包编译，核对了声明、分页和图表。 |
+| 数据和复现入口 | [项目 README](../README.md) · [表格渲染脚本](../scripts/render_pact.py) · [构建脚本](../scripts/build_paper.py) · [核心矢量图](../paper/figures/commitment_arr.pdf) · [600 dpi PNG](../paper/figures/commitment_arr.png) · [绘图脚本](../scripts/plot_commitment_arr.py) |
+| GitHub 交付 | 最终归档提交通过快进同步到 Private `main`。本地和远端保留历史，核对两端最新提交 SHA 与文件树。 [GitHub main](https://github.com/Lmy0415/dase7506-agent-harness-clean/tree/main) |
+| 学生提交 | 在源码填入真实姓名、学号和单位后重新编译，核对课程系统内的提交要求和可能的额外 AI 声明表单，由学生正式上传。 |

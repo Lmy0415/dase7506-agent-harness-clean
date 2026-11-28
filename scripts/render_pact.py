@@ -87,6 +87,7 @@ def write_pact():
     rows = load('pact', 'branch_metrics')
     indexed = {(int(r['intervention_id']), r['boundary'], r['method']): r for r in rows if r['stage'] == 'formal'}
     n = sum(r['status'] == 'scored' for r in indexed.values())
+    post_contrast = pairs['all', 'POST', 'P']
     metrics = ('arr', 'disposition', 'report', 'required_ask', 'unnecessary_ask', 'unauthorized_repair',
                'post_violation', 'independent', 'priority', 'retained')
     top = []
@@ -130,26 +131,41 @@ def write_pact():
                                    ('gate_checked', 'gate_rejected', 'declared_scope_candidate_blocks'))
     stage = budget['pact_by_stage']['formal']
     money = lambda amount: r'\$' + f'{usd(amount):.3f}'
-    put('case_analysis', r'\subsection{Formal outcomes}', tab, st, ct,
-        f"All {n} formal branches were scored. PRE ARR was {cell('PRE')}. POST ARR was {cell('POST')}. "
-        f"The paired PACT versus P difference was {ci(pairs['all','PRE','P'])} points in PRE and "
-        f"{ci(pairs['all','POST','P'])} in POST. Table~\\ref{{tab:pactpair}} gives the contrasts against native "
-        'continuation and the exploratory interaction. The small sample limits the scope of these estimates. '
-        f"An independent sensitivity check accepting explicit committed object IDs changed POST ARR to "
+    plot = r"""\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/commitment_arr.pdf}
+\caption{Appropriate resolution across the two commit boundaries. Each point summarizes 12 matched task families. The bracket shows the observed POST difference between PACT and Procedure Prompt.}
+\label{fig:commit-arr}
+\end{figure}"""
+    put('case_analysis', r'\subsection{Formal outcomes}', plot, tab, st, ct,
+        f"All {n} formal branches were scored. Figure~\\ref{{fig:commit-arr}} shows an observed tie "
+        "between PACT and Procedure Prompt in PRE. "
+        f"PRE ARR was {cell('PRE')}. POST ARR was {cell('POST')}. "
+        f"The POST contrast between PACT and Procedure Prompt was "
+        f"{float(post_contrast['delta_pp']):+.1f} percentage points "
+        f"(95\\% family-bootstrap interval [{float(post_contrast['low_95']):.1f}, "
+        f"{float(post_contrast['high_95']):.1f}]). Among discordant pairs, "
+        f"{post_contrast['wins']} favored PACT and {post_contrast['losses']} favored Procedure Prompt. "
+        f"The two-sided exact McNemar test gave $p={post_contrast['exact_mcnemar_unadjusted']}$, "
+        "which does not meet the conventional 0.05 threshold. The bootstrap interval resamples "
+        "the observed families and excludes zero. The exact test conditions on the five discordant pairs. "
+        "We interpret the difference as exploratory. "
+        f"Table~\\ref{{tab:pactpair}} reports the PRE contrast, the comparison with Native, and the interaction.",
+        f"Accepting object IDs verified against actual tool receipts changed POST ARR to "
         f"{sensitivity['A']}/12 for A and {sensitivity['P']}/12 for P, with PACT at {sensitivity['PACT']}/12. "
-        "The primary rule used the displayed receipt reference and is held fixed.",
+        "The main analysis retains the frozen rule requiring the displayed receipt reference.",
         f"The required POST decision counts were {asks}. PACT completed independent work in "
         f"{metric(coop,'independent')} applicable controlled POST branches and met the priority and dependency "
         f"rubric in {metric(coop,'priority')}. Across both boundaries its gate checked {checked} API proposals and "
         f"rejected {rejected}. Of these, {apparent} matched an eventual work scope. Their validity also depends "
         'on the local scheduling context, so the logs do not support a verified false-positive rate. '
         'A controlled simulator test verified that rejection left the state unchanged and independent writes proceeded.',
-        'PACT advanced escalation more often but completed fewer independent POST tasks. '
+        'PACT escalated more often and completed fewer independent POST tasks. '
         f"Independent work was completed in {metric(post['A'],'independent')} branches for Native A, "
         f"{metric(post['P'],'independent')} for Procedure P, and {metric(post['PACT'],'independent')} for PACT. "
-        'None of the three methods submitted a monitored unauthorized repair in POST. The ARR advantage '
-        'therefore reflects a difference in logged and grounded disposition under this rubric. It provides '
-        'limited evidence about whether actual unauthorized repairs would be prevented under higher-risk conditions.',
+        'Each method had zero monitored unauthorized repairs across 12 POST branches. '
+        'The difference concerns the measured resolution of committed actions, including reports and '
+        'decision requests that PACT can log automatically. The experiment does not isolate the effect of automation.',
         f"Formal inference returned {stage['receipts']} receipts at an estimated peak cost of "
         f"{money(stage['peak_nano_usd'])}. Including both pilot rounds and any open PACT reservations, "
         f"the extension occupied at most {money(budget['pact_occupied_upper_nano_usd'])} of its "
@@ -179,22 +195,23 @@ def main():
     (native, prompt, pact), effect = write_pact()
     put('abstract',
         f"A mid-task revision can arrive before a tool request commits or after its effects persist. "
-        f"We first analyze {total} AppWorld branches from prior checkpoint-matched experiments. More tolerant "
+        f"We first analyze {total} historical AppWorld branches across 49 task families. More tolerant "
         f"intent and evidence validation reduces complete fallback from {metric(cp,'fallback','n')} to "
         f"{metric(c5,'fallback','n')} in the historical cohort, with strict success unchanged at "
-        f"{metric(c5,'strict','n')}. We then create matched PRE and POST worlds around one real tool submission "
-        'in twelve previously studied families. PACT uses a program-controlled queue to cancel withdrawn work, '
-        'seek authorization, and resume independent tasks. POST Appropriate Resolution Rate is '
+        f"{metric(c5,'strict','n')}. We then run 72 branches in matched PRE and POST worlds around a verified "
+        'tool submission, reusing 12 historical families. The PACT controller can report effects and seek '
+        'authorization automatically while scheduling independent work. POST Appropriate Resolution Rate is '
         f"{pact} for PACT, {prompt} for the full procedural prompt, and {native} for native continuation. "
-        f"The paired PACT versus prompt difference is {effect} percentage points. The experiments distinguish "
-        'representation reliability, reporting a committed effect, and completing authorized work.')
+        f"The observed paired difference is {effect} percentage points (estimate and 95\\% bootstrap interval). "
+        'The results describe complete harnesses in a small matched sample.')
     put('conclusion', r'\section{Conclusion}',
         'Tolerant parsing and local evidence checks stabilized the historical intent state, while strict '
         'success remained unchanged against C+. The follow-on evaluation makes one real commit observable '
         f"and then supplies the same revision. PACT achieved {pact} appropriate POST resolutions versus "
         f"{prompt} for the procedure prompt, with a paired difference of {effect} points. The estimate is "
-        'specific to the sampled families, model, and observable authorization conditions. Commit-boundary '
-        'pairing distinguishes tasks that remain actionable from commitments that require disclosure and a user decision.')
+        'specific to the sampled families, model, and observable authorization conditions. PACT also completed '
+        'less independent POST work. Commit-boundary pairing makes it possible to evaluate both the handling '
+        'of a committed effect and the work that continues around it.')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,17 @@
 # DASE7506 Final Project
 
+**Status:** Research and engineering deliverables are complete. The paper awaits the students' author details and formal course submission.
+
 This project studies how an LLM agent revises an in-progress task when the user changes the goal. The continuations share AppWorld checkpoints. A separate condition starts from the initial state with the revised goal. See the [original protocol](PLAN.md), [V4 extension](DASE7506_Harness_Extension_V4.md), [final V5 protocol](DASE7506_Harness_V5_Final_Experiment.md), [PACT supplement](DASE7506_PACT_Novelty_Extension.md), and [progress log](PROGRESS.md).
+
+## Final archive
+
+- **Evidence.** 49 distinct formal task families and 477 scored formal branches: [405 historical branches](results/harness_v5/branch_metrics.csv) and [72 PACT branches](results/pact/branch_metrics.csv). PACT reuses 12 of the 49 historical families. The existing project verification records 27 passing tests. The cumulative API budget upper bound, including outstanding reservations, is USD 4.1482 out of USD 10. [Budget](results/pact/budget.json)
+- **Findings.** More tolerant intent state reduced historical fallbacks from 19/40 to 0/40, with strict success at 22/40 for both intent-aware methods. PACT and the procedure prompt tied at 10/12 in PRE. In POST their ARR was 7/12 and 2/12, with a two-sided exact McNemar p-value of 0.0625. PACT completed less independent POST work. The comparison covers complete harnesses, with 12 reused families, one model, and no user replies to escalation. [Historical summary](results/harness_v5/summary.csv) · [PACT summary](results/pact/summary.csv) · [Paired estimates](results/pact/paired.csv)
+- **Paper and figure.** [IEEE PDF](paper/report.pdf) · [LaTeX](paper/main.tex) · [Overleaf ZIP](deliverables/overleaf_project.zip) · [Vector result figure](paper/figures/commitment_arr.pdf) · [600 dpi PNG](paper/figures/commitment_arr.png) · [Matplotlib script](scripts/plot_commitment_arr.py)
+- **Reproduction and handoff.** [Paper table renderer](scripts/render_pact.py) · [Overleaf build script](scripts/build_paper.py) · [中文项目说明](docs/PROJECT_WALKTHROUGH_ZH.md) · [中文 PACT 研究报告](docs/PACT_WALKTHROUGH_ZH.md) · [最终验收清单](docs/FINAL_CHECKLIST.md)
+
+The paper includes an AI Disclosure before the References. Before submission, enter the verified author names, student IDs, and affiliations in the LaTeX source, then rebuild the PDF. Confirm any submission-specific declaration fields and submit the completed report through the course system.
 
 ## Local setup
 
@@ -145,6 +156,8 @@ Reconstruct checked-in statistics from the retained raw files, then render the i
 .venv/bin/python -m scripts.render_pact
 .venv/bin/python scripts/build_paper.py
 ```
+
+To regenerate the results figure, run `python -m scripts.plot_commitment_arr` in an environment with Matplotlib (verified with 3.10.9). The script reads the frozen PACT summary and writes the vector PDF and 600 dpi PNG under `paper/figures/`.
 
 With the original checkpoints and stored terminal worlds, `.venv/bin/python -m src.pact_score formal` reconstructs missing independent grades without model calls. `.venv/bin/python -m scripts.pact_control` runs the two isolated AppWorld controls without a model. The evaluation labels and observations stay outside the model requests and controller. The evaluator is a separate program and has local access to simulator state.
 
